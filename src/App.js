@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
 import ProductList from "./pages/ProductList";
 import Nav from "./components/molecules/nav/Nav";
 import { getMobileList } from "./utils/api/api";
-import Modal from "./components/organisms/Modal";
+
 function App() {
   const [list, setList] = useState();
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getList();
@@ -38,31 +37,15 @@ function App() {
     }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-  const openModal = () => {
-    setShowModal(true);
-  };
-
   return (
     <div className="App">
       <Nav />
-      {showModal === true && (
-        <Modal openFunction={openModal} closeFunction={closeModal} />
-      )}
       <Routes>
         <Route
           path="/"
-          element={
-            <ProductList
-              openModal={openModal}
-              filterFunction={filterList}
-              list={list}
-            />
-          }
+          element={<ProductList filterFunction={filterList} list={list} />}
         />
-        <Route path="/detail" element={<ProductDetail />} />
+        <Route path="/:id" list={list} element={<ProductDetail />} />
       </Routes>
     </div>
   );
