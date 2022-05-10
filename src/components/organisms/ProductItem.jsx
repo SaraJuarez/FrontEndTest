@@ -1,9 +1,9 @@
 import ImageProduct from "../atoms/ImageProduct";
 import { ProductItemContainer } from "../styles/productItem.styled";
 function ProductItem(props) {
-  const { productInfo } = props;
+  const { productInfo, openModal } = props;
   return (
-    <ProductItemContainer>
+    <ProductItemContainer onClick={openModal}>
       <div>
         <ImageProduct image={productInfo.imgUrl} />
       </div>

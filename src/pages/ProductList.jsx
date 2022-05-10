@@ -1,3 +1,4 @@
+import React from "react";
 import ProductItem from "../components/organisms/ProductItem";
 import {
   ProductListGrid,
@@ -6,7 +7,8 @@ import {
 } from "../components/styles/productList.styled";
 
 function ProductList(props) {
-  const { list, filterFunction } = props;
+  const { list, filterFunction, openModal } = props;
+
   return (
     <ProductListContainer>
       <ProductListTitle>
@@ -16,7 +18,13 @@ function ProductList(props) {
       <ProductListGrid>
         {list !== undefined
           ? list.map((element) => {
-              return <ProductItem key={element.id} productInfo={element} />;
+              return (
+                <ProductItem
+                  openModal={openModal}
+                  key={element.id}
+                  productInfo={element}
+                />
+              );
             })
           : null}
       </ProductListGrid>
