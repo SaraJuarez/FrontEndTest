@@ -16,6 +16,7 @@ function App() {
     let result = await getMobileList();
     if (result !== null) {
       setList(result);
+      localStorage.setItem("list", JSON.stringify(result));
     } else {
       setList(undefined);
     }
@@ -27,8 +28,7 @@ function App() {
       let result = list.filter((item) => {
         return (
           item.brand.toLowerCase().includes(valueInput) ||
-          item.model.toLowerCase().includes(valueInput) ||
-          item.price.includes(valueInput)
+          item.model.toLowerCase().includes(valueInput)
         );
       });
       setList(result);
