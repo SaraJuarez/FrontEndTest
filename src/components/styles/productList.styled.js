@@ -1,20 +1,30 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProductListContainer = styled.div`
-padding: 20px;
-color: ${props=> props.theme.colors?.darkBlue};
-background-color:${props=>props.theme.colors?.lightBlue};
-`
+  padding: 20px;
+  color: ${(props) => props.theme.colors?.darkBlue};
+  background-color: ${(props) => props.theme.colors?.lightBlue};
+`;
 
 export const ProductListGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-`
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 export const ProductListTitle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

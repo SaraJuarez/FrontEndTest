@@ -10,6 +10,7 @@ export const ButtonContainer = styled.div`
   margin-bottom: 20px;
   width: 30%;
   box-shadow: 5px 0px 15px 0px #000000;
+  cursor: pointer;
 `;
 
 export const ButtonText = styled.p`

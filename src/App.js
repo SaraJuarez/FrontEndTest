@@ -4,6 +4,8 @@ import ProductDetail from "./pages/ProductDetail";
 import ProductList from "./pages/ProductList";
 import Nav from "./components/molecules/nav/Nav";
 import { getMobileList, setMobileInfo } from "./utils/api/api";
+import { StyledApp } from "./components/styles/app.styled";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [list, setList] = useState();
@@ -14,9 +16,15 @@ function App() {
     storage: "",
   });
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     getList();
   }, []);
+
+  setTimeout(function () {
+    localStorage.setItem([], "list");
+  }, 1000 * 60 * 60);
 
   const getList = async () => {
     let result = await getMobileList();
@@ -55,16 +63,22 @@ function App() {
   }
 
   const getCartInfo = async (idMobile) => {
-    let newObject = objectInfo;
-    newObject.id = idMobile;
-    setObjectInfo(newObject);
-    let itemsInTheCart = await setMobileInfo(objectInfo);
-    setCartItems(itemsInTheCart);
+    if (objectInfo.color === "" || objectInfo.storage === "") {
+      window.alert("Please, select color and storage capacity before adding ");
+      return;
+    } else {
+      let newObject = objectInfo;
+      newObject.id = idMobile;
+      setObjectInfo(newObject);
+      let itemsInTheCart = await setMobileInfo(objectInfo);
+      setCartItems(itemsInTheCart);
+      navigate("/");
+    }
   };
 
   return (
-    <div className="App">
-      <Nav items={cartItems} />
+    <StyledApp className="App">
+      <Nav id={id} items={cartItems} />
       <Routes>
         <Route
           path="/"
@@ -81,7 +95,7 @@ function App() {
           }
         />
       </Routes>
-    </div>
+    </StyledApp>
   );
 }
 

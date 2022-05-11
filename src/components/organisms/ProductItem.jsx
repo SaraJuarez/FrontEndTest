@@ -1,19 +1,23 @@
 import ImageProduct from "../atoms/ImageProduct";
-import { ProductItemContainer } from "../styles/productItem.styled";
+import {
+  ProductItemContainer,
+  ProductImageContainer,
+  ProductTextContainer,
+} from "../styles/productItem.styled";
 import { Link } from "react-router-dom";
 function ProductItem(props) {
-  const { productInfo, openModal } = props;
+  const { productInfo } = props;
   return (
     <Link to={`/${productInfo.id}`}>
-      <ProductItemContainer onClick={openModal}>
-        <div>
+      <ProductItemContainer>
+        <ProductImageContainer>
           <ImageProduct image={productInfo.imgUrl} />
-        </div>
-        <div>
+        </ProductImageContainer>
+        <ProductTextContainer>
           <p>Brand:{productInfo.brand}</p>
           <p>Model:{productInfo.model}</p>
           <p>Price:{productInfo.price}</p>
-        </div>
+        </ProductTextContainer>
       </ProductItemContainer>
     </Link>
   );

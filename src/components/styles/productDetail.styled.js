@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ProductDetailContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -12,6 +13,15 @@ export const ProductDetailText = styled.div`
   margin-left: 10%;
   font-family: ${(props) => props.theme.fonts[1]};
   color: ${(props) => props.theme.colors?.darkBlue};
+  @media screen and (max-width: 800px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 8px;
+  }
 `;
 
 export const LinkContainer = styled.div`
