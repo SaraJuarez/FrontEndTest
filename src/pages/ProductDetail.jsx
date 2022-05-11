@@ -5,10 +5,15 @@ import { getMobileInfo } from "../utils/api/api";
 import {
   ProductDetailContainer,
   ProductDetailText,
+  ProductDetailInfoActions,
+  ProductDetailAll,
+  LinkContainer,
+  SelectsContainer,
+  Span,
 } from "../components/styles/productDetail.styled";
 import Select from "../components/atoms/Select";
 import Button from "../components/atoms/Button";
-
+import { Link } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
@@ -26,41 +31,75 @@ function ProductDetail(props) {
 
   return (
     <ProductDetailContainer>
-      <div>
+      <LinkContainer>
+        <Link to="/">Go back</Link>
+      </LinkContainer>
+      <ProductDetailAll>
         <ImageProduct image={mobileDetails?.imgUrl} />
-      </div>
-      <ProductDetailText>
-        <div>
-          <p>Brand:{mobileDetails?.brand}</p>
-          <p>Model:{mobileDetails?.model}</p>
-          <p>Price:{mobileDetails?.price}</p>
-          <p>CPU:{mobileDetails?.cpu}</p>
-          <p>RAM:{mobileDetails?.ram}</p>
-          <p>OS:{mobileDetails?.os}</p>
-        </div>
-        <div>
-          <p>Screen resolution:{mobileDetails?.displayResolution}</p>
-          <p>Battery:{mobileDetails?.battery}</p>
-          <p>Camera:{mobileDetails?.primaryCamera[0]}</p>
-          <p>Dimensions:{mobileDetails?.dimentions}</p>
-          <p>Weight:{mobileDetails?.weight}</p>
-        </div>
-        <div>
-          <Select
-            onChangeFunction={getSelectOption}
-            options={mobileDetails?.options.colors}
-            getSelectDefault={getSelectDefault}
-            name="color"
-          />
-          <Select
-            onChangeFunction={getSelectOption}
-            options={mobileDetails?.options.storages}
-            getSelectDefault={getSelectDefault}
-            name="storage"
-          />
-          <Button onClickFunction={() => getCartInfo(id)} text="Add" />
-        </div>
-      </ProductDetailText>
+        <ProductDetailInfoActions>
+          <ProductDetailText>
+            <p>
+              <Span>Brand:</Span>
+              {mobileDetails?.brand}
+            </p>
+            <p>
+              <Span>Model:</Span>
+              {mobileDetails?.model}
+            </p>
+            <p>
+              <Span>Price</Span>
+              {mobileDetails?.price}
+            </p>
+            <p>
+              <Span>CPU:</Span>
+              {mobileDetails?.cpu}
+            </p>
+            <p>
+              <Span>RAM:</Span>
+              {mobileDetails?.ram}
+            </p>
+            <p>
+              <Span>OS:</Span>
+              {mobileDetails?.os}
+            </p>
+            <p>
+              <Span>Screen resolution:</Span>
+              {mobileDetails?.displayResolution}
+            </p>
+            <p>
+              <Span>Battery:</Span>
+              {mobileDetails?.battery}
+            </p>
+            <p>
+              <Span>Camera:</Span>
+              {mobileDetails?.primaryCamera[0]}
+            </p>
+            <p>
+              <Span>Dimensions:</Span>
+              {mobileDetails?.dimentions}
+            </p>
+            <p>
+              <Span>Weight:</Span>
+              {mobileDetails?.weight}
+            </p>
+          </ProductDetailText>
+          <SelectsContainer>
+            <Select
+              onChangeFunction={getSelectOption}
+              options={mobileDetails?.options.colors}
+              getSelectDefault={getSelectDefault}
+              name="color"
+            />
+            <Select
+              onChangeFunction={getSelectOption}
+              options={mobileDetails?.options.storages}
+              getSelectDefault={getSelectDefault}
+              name="storage"
+            />
+          </SelectsContainer>
+        </ProductDetailInfoActions>
+      </ProductDetailAll>
+      <Button onClickFunction={() => getCartInfo(id)} text="Add" />
     </ProductDetailContainer>
   );
 }

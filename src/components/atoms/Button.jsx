@@ -1,9 +1,10 @@
+import { ButtonContainer, ButtonText } from "../styles/button.styled";
 function Button(props) {
   const { text, onClickFunction } = props;
   return (
-    <div onClick={onClickFunction}>
-      <p>{text}</p>
-    </div>
+    <ButtonContainer onClick={onClickFunction}>
+      <ButtonText>{text}</ButtonText>
+    </ButtonContainer>
   );
 }
 

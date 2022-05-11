@@ -1,11 +1,12 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
+import { SelectStyled } from "../styles/select.styled";
 
 function Select(props) {
-  const { options, onChangeFunction, name, getSelectDefault } = props;
+  const { options, onChangeFunction, name } = props;
 
   return (
     <Fragment>
-      <select name={name} onChange={onChangeFunction}>
+      <SelectStyled name={name} onChange={onChangeFunction}>
         <option value="">{name}</option>
         {options !== undefined &&
           options.map((option, index) => {
@@ -15,7 +16,7 @@ function Select(props) {
               </option>
             );
           })}
-      </select>
+      </SelectStyled>
     </Fragment>
   );
 }

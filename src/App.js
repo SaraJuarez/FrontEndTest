@@ -43,10 +43,6 @@ function App() {
     }
   };
 
-  function getSelectDefault(name, value) {
-    console.log(name, value);
-  }
-
   function getSelectOption(e) {
     if (e.target.value === "") {
       window.alert(`Please, select a valid ${e.target.name} value`);
@@ -81,7 +77,6 @@ function App() {
             <ProductDetail
               getCartInfo={getCartInfo}
               getSelectOption={getSelectOption}
-              getSelectDefault={getSelectDefault}
             />
           }
         />
