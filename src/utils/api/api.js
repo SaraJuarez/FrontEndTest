@@ -18,3 +18,18 @@ export const getMobileInfo = async (id) => {
     return null;
   }
 };
+
+export const setMobileInfo = async (infoMobile) => {
+  try {
+    let info = {
+      id: infoMobile.id,
+      colorCode: infoMobile.color,
+      storageCode: infoMobile.storage,
+    };
+    let response = await axios.post(`${apiUrl}api/cart`, info);
+    return response.data.count;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
