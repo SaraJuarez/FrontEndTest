@@ -1,23 +1,41 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
-/* import Link from "@mui/material/Link"; */
+import { NavUnlisted } from "../styles/breadcrumb.styled";
+import { useLocation } from "react-router-dom";
+function BreadCrumb(props) {
+  const { detailId } = props;
+  const location = useLocation();
 
-function BreadCrumb() {
   function handleClick(e) {
-    e.preventDefault();
+    e.preventDefvault();
     console.info("You clicked a breadcrumb.");
   }
+
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link to="/">MObile Catalog</Link>
-        <Link to="/:id">Mobile Detail</Link>
-        {/*         <Link underline="hover" color="inherit" href="/">
-          Mobile Catalog
-        </Link>
-        <Link underline="hover" color="inherit" href="/:id">
-          Mobile Detail
-        </Link> */}
+      <Breadcrumbs separator="›" aria-label="breadcrumb">
+        <NavUnlisted>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: `${location.pathname === "/" ? "#03045e" : "#caf0f8"}`,
+            }}
+            to="/"
+          >
+            Mobile Catalog
+          </Link>
+        </NavUnlisted>
+        <NavUnlisted>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: `${location.pathname !== "/" ? "#03045e" : "#caf0f8"}`,
+            }}
+            to={`/${detailId}`}
+          >
+            Mobile Detail
+          </Link>
+        </NavUnlisted>
       </Breadcrumbs>
     </div>
   );

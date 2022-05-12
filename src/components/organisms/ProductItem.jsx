@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 function ProductItem(props) {
   const { productInfo } = props;
+
   return (
     <Link to={`/${productInfo.id}`}>
       <ProductItemContainer>

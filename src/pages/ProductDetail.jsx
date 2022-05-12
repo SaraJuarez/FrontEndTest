@@ -17,15 +17,15 @@ import { Link } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
-  const { getSelectOption, getCartInfo, getSelectDefault } = props;
+  const { getSelectOption, getCartInfo, getSelectDefault, setDetailId } = props;
 
   const getMobileDetails = async () => {
     let info = await getMobileInfo(id);
-    console.log(info);
     setMobileDetails(info);
   };
 
   useEffect(() => {
+    setDetailId(id);
     getMobileDetails();
   }, []);
 

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 function App() {
   const [list, setList] = useState();
   const [cartItems, setCartItems] = useState(0);
+  const [detailId, setDetailId] = useState();
   const [objectInfo, setObjectInfo] = useState({
     id: "",
     color: "",
@@ -75,10 +76,13 @@ function App() {
       navigate("/");
     }
   };
+  /*   function saveId(id) {
+    localStorage.setItem(id, "id");
+  } */
 
   return (
     <StyledApp className="App">
-      <Nav id={id} items={cartItems} />
+      <Nav detailId={detailId} items={cartItems} />
       <Routes>
         <Route
           path="/"
@@ -89,8 +93,10 @@ function App() {
           list={list}
           element={
             <ProductDetail
-              getCartInfo={getCartInfo}
+              /*               saveId={saveId}
+               */ getCartInfo={getCartInfo}
               getSelectOption={getSelectOption}
+              setDetailId={setDetailId}
             />
           }
         />

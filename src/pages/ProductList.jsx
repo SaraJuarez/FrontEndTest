@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 
 function ProductList(props) {
-  const { list, filterFunction, openModal } = props;
+  const { list, filterFunction } = props;
 
   return (
     <Link style={{ textDecoration: "none" }} to="/detail">
@@ -20,13 +20,7 @@ function ProductList(props) {
         <ProductListGrid>
           {list !== undefined
             ? list.map((element) => {
-                return (
-                  <ProductItem
-                    openModal={openModal}
-                    key={element.id}
-                    productInfo={element}
-                  />
-                );
+                return <ProductItem key={element.id} productInfo={element} />;
               })
             : null}
         </ProductListGrid>
