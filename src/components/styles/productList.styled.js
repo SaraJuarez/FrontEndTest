@@ -28,3 +28,16 @@ export const ProductListTitle = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const StyledH2 = styled.h2`
+  color: ${(props) => props.theme.colors?.darkBlue};
+  @media screen and (max-width: 800px) {
+    font-size: 26px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 18px;
+  }
+`;

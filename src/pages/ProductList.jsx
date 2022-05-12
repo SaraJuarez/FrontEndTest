@@ -4,15 +4,15 @@ import {
   ProductListGrid,
   ProductListContainer,
   ProductListTitle,
+  StyledH2,
 } from "../components/styles/productList.styled";
 
 function ProductList(props) {
   const { list, filterFunction } = props;
-
   return (
     <ProductListContainer>
       <ProductListTitle>
-        <h2>Mobile List</h2>
+        <StyledH2>Mobile List</StyledH2>
         <input onChange={filterFunction} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>

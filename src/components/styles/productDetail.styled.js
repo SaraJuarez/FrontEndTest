@@ -60,6 +60,10 @@ export const SelectsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const Span = styled.span`

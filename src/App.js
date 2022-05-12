@@ -20,11 +20,16 @@ function App() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    getList();
+    if (localStorage.getItem("list") === undefined) {
+      getList();
+    } else {
+      let stringList = JSON.parse(localStorage.getItem("list"));
+      setList(stringList);
+    }
   }, []);
 
   setTimeout(function () {
-    localStorage.setItem([], "list");
+    localStorage.setItem(undefined, "list");
   }, 1000 * 60 * 60);
 
   const getList = async () => {
@@ -72,7 +77,8 @@ function App() {
       newObject.id = idMobile;
       setObjectInfo(newObject);
       let itemsInTheCart = await setMobileInfo(objectInfo);
-      setCartItems(itemsInTheCart);
+      setCartItems(cartItems + 1);
+      /*       setCartItems(itemsInTheCart); */
       navigate("/");
     }
   };

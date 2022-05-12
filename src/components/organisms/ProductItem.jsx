@@ -9,7 +9,7 @@ function ProductItem(props) {
   const { productInfo } = props;
 
   return (
-    <Link to={`/${productInfo.id}`}>
+    <Link style={{ textDecoration: "none" }} to={`/${productInfo.id}`}>
       <ProductItemContainer>
         <ProductImageContainer>
           <ImageProduct image={productInfo.imgUrl} />

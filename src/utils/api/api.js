@@ -27,6 +27,8 @@ export const setMobileInfo = async (infoMobile) => {
       storageCode: infoMobile.storage,
     };
     let response = await axios.post(`${apiUrl}api/cart`, info);
+    console.log(response);
+    debugger;
     return response.data.count;
   } catch (error) {
     console.log(error);
