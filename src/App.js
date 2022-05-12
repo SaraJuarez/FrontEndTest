@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/productDetail/ProductDetail";
-import ProductList from "./pages/ProductList";
+import ProductList from "./pages/productList/ProductList";
 import Nav from "./components/molecules/nav/Nav";
 import { getMobileList, setMobileInfo } from "./utils/api/api";
 import { StyledApp } from "./components/styles/app.styled";
@@ -20,7 +20,11 @@ function App() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("list") === undefined) {
+    if (
+      localStorage.getItem("list") === undefined ||
+      localStorage.getItem("list") === false ||
+      localStorage.getItem("list") === null
+    ) {
       getList();
     } else {
       let stringList = JSON.parse(localStorage.getItem("list"));

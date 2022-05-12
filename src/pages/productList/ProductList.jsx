@@ -1,11 +1,11 @@
 import React from "react";
-import ProductItem from "../components/organisms/ProductItem";
+import ProductItem from "../../components/organisms/ProductItem";
 import {
   ProductListGrid,
   ProductListContainer,
   ProductListTitle,
   StyledH2,
-} from "../components/styles/productList.styled";
+} from "../../components/styles/productList.styled";
 
 function ProductList(props) {
   const { list, filterFunction } = props;

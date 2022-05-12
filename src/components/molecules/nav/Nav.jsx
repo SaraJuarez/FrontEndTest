@@ -1,6 +1,12 @@
-import { NavContainer, StyledH1, StyledP } from "../../styles/nav.styled";
+import {
+  NavContainer,
+  StyledH1,
+  StyledP,
+  StyledCart,
+} from "../../styles/nav.styled";
 import { Link } from "react-router-dom";
 import BreadCrumb from "../../atoms/Breadcrumb";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 function Nav(props) {
   const { items, detailId } = props;
   return (
@@ -11,7 +17,10 @@ function Nav(props) {
         </Link>
         <BreadCrumb detailId={detailId} />
       </div>
-      <StyledP>Items in the cart: {items}</StyledP>
+      <StyledCart>
+        <StyledP>Items in the cart: {items}</StyledP>
+        <ShoppingCartIcon />
+      </StyledCart>
     </NavContainer>
   );
 }

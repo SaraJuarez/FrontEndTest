@@ -1,6 +1,9 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
-import { NavUnlisted } from "../styles/breadcrumb.styled";
+import {
+  NavUnlisted,
+  CustomizedBreadCrumbs,
+} from "../styles/breadcrumb.styled";
 import { useLocation } from "react-router-dom";
 function BreadCrumb(props) {
   const { detailId } = props;
@@ -13,7 +16,7 @@ function BreadCrumb(props) {
 
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs separator="›" aria-label="breadcrumb">
+      <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">
         <NavUnlisted>
           <Link
             style={{
@@ -38,7 +41,7 @@ function BreadCrumb(props) {
             Mobile Detail
           </Link>
         </NavUnlisted>
-      </Breadcrumbs>
+      </CustomizedBreadCrumbs>
     </div>
   );
 }

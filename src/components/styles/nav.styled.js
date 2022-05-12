@@ -42,3 +42,8 @@ export const StyledP = styled.p`
     font-size: 12px;
   }
 `;
+
+export const StyledCart = styled.div`
+  display: flex;
+  align-items: center;
+`;
