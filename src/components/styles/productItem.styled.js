@@ -3,17 +3,16 @@ import styled from "styled-components";
 export const ProductItemContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: ${(props) => props.theme.colors?.navBlue};
+  background-color: white;
   border-radius: 15px;
   padding: 15px;
   color: ${(props) => props.theme.colors?.darkBlue};
-  font-family: ${(props) => props.theme.fonts[0]};
   cursor: pointer;
-  /*   -webkit-box-shadow: 5px 0px 10px 0px #000000;
-  box-shadow: 1px 0px 10px 0px #000000; */
+  min-height: 170px;
 `;
 
 export const ProductImageContainer = styled.div`
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,4 +24,10 @@ export const ProductTextContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-left: 5px;
+  width: 50%;
+`;
+
+export const StyledSpan = styled.span`
+  font-weight: bold;
+  margin-right: 5px;
 `;

@@ -4,14 +4,21 @@ export const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) => props.theme.colors?.mediumBlue};
+  background: linear-gradient(
+    90deg,
+    rgba(3, 4, 94, 1) 0%,
+    rgba(0, 180, 216, 1) 50%,
+    rgba(202, 240, 248, 1) 100%
+  );
   color: ${(props) => props.theme.colors?.violet};
   border-bottom: 1px solid ${(props) => props.theme.colors?.darkBlue};
   padding: 0px 15px;
 `;
 
 export const StyledH1 = styled.h1`
-  color: ${(props) => props.theme.colors?.darkBlue};
+  color: white;
+  font-family: "Fredoka One", cursive;
+  font-size: 40px;
   @media screen and (max-width: 800px) {
     font-size: 28px;
   }

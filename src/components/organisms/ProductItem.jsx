@@ -3,6 +3,7 @@ import {
   ProductItemContainer,
   ProductImageContainer,
   ProductTextContainer,
+  StyledSpan,
 } from "../styles/productItem.styled";
 import { Link } from "react-router-dom";
 function ProductItem(props) {
@@ -15,9 +16,18 @@ function ProductItem(props) {
           <ImageProduct image={productInfo.imgUrl} />
         </ProductImageContainer>
         <ProductTextContainer>
-          <p>Brand:{productInfo.brand}</p>
-          <p>Model:{productInfo.model}</p>
-          <p>Price:{productInfo.price}</p>
+          <p>
+            <StyledSpan>Brand:</StyledSpan>
+            {productInfo.brand}
+          </p>
+          <p>
+            <StyledSpan>Model:</StyledSpan>
+            {productInfo.model}
+          </p>
+          <p>
+            <StyledSpan>Price:</StyledSpan>
+            {productInfo.price}$
+          </p>
         </ProductTextContainer>
       </ProductItemContainer>
     </Link>

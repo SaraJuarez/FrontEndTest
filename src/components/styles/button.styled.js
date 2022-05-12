@@ -14,6 +14,5 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ButtonText = styled.p`
-  font-family: ${(props) => props.theme.fonts[1]};
   margin: 0;
 `;

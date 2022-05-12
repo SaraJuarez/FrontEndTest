@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import ProductDetail from "./pages/ProductDetail";
+import ProductDetail from "./pages/productDetail/ProductDetail";
 import ProductList from "./pages/ProductList";
 import Nav from "./components/molecules/nav/Nav";
 import { getMobileList, setMobileInfo } from "./utils/api/api";

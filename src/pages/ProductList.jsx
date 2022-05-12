@@ -16,7 +16,7 @@ function ProductList(props) {
         <input onChange={filterFunction} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>
-        {list !== undefined
+        {list !== undefined && list !== null
           ? list.map((element) => {
               return <ProductItem key={element.id} productInfo={element} />;
             })

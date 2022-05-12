@@ -18,20 +18,22 @@ function BreadCrumb(props) {
           <Link
             style={{
               textDecoration: "none",
-              color: `${location.pathname === "/" ? "#03045e" : "#caf0f8"}`,
+              color: `${location.pathname === "/" ? "white" : "#caf0f8"}`,
+              fontSize: `${location.pathname === "/" ? "20px" : "16px"}`,
             }}
             to="/"
           >
-            Mobile Catalog
+            Main Catalog
           </Link>
         </NavUnlisted>
         <NavUnlisted>
           <Link
             style={{
               textDecoration: "none",
-              color: `${location.pathname !== "/" ? "#03045e" : "#caf0f8"}`,
+              color: `${location.pathname !== "/" ? "white" : "#caf0f8"}`,
+              fontSize: `${location.pathname !== "/" ? "20px" : "16px"}`,
             }}
-            to={`/${detailId}`}
+            to={detailId !== "undefined" ? `/${detailId}` : "#"}
           >
             Mobile Detail
           </Link>

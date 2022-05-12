@@ -8,7 +8,6 @@ const theme = {
     mediumBlue: "#00b4d8",
     navBlue: "#90e0ef",
   },
-  fonts: ["sans-serif", "Roboto"],
   fontSizes: {
     small: "1em",
     medium: "2em",

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ImageProduct from "../components/atoms/ImageProduct";
-import { getMobileInfo } from "../utils/api/api";
+import ImageProduct from "../../components/atoms/ImageProduct";
+import { getMobileInfo } from "../../utils/api/api";
 import {
   ProductDetailContainer,
   ProductDetailText,
@@ -10,9 +10,9 @@ import {
   LinkContainer,
   SelectsContainer,
   Span,
-} from "../components/styles/productDetail.styled";
-import Select from "../components/atoms/Select";
-import Button from "../components/atoms/Button";
+} from "../../components/styles/productDetail.styled";
+import Select from "../../components/atoms/Select";
+import Button from "../../components/atoms/Button";
 import { Link } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();
@@ -34,7 +34,6 @@ function ProductDetail(props) {
       <Link style={{ textDecoration: "none", color: "#caf0f8" }} to="/">
         <LinkContainer>Go back</LinkContainer>
       </Link>
-
       <ProductDetailAll>
         <ImageProduct image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>
@@ -49,7 +48,7 @@ function ProductDetail(props) {
             </p>
             <p>
               <Span>Price</Span>
-              {mobileDetails?.price}
+              {mobileDetails?.price}$
             </p>
             <p>
               <Span>CPU:</Span>
