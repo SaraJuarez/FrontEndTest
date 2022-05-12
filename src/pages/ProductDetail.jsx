@@ -31,9 +31,10 @@ function ProductDetail(props) {
 
   return (
     <ProductDetailContainer>
-      <LinkContainer>
-        <Link to="/">Go back</Link>
-      </LinkContainer>
+      <Link style={{ textDecoration: "none", color: "#caf0f8" }} to="/">
+        <LinkContainer>Go back</LinkContainer>
+      </Link>
+
       <ProductDetailAll>
         <ImageProduct image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>

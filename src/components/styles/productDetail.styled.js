@@ -26,8 +26,21 @@ export const ProductDetailText = styled.div`
 
 export const LinkContainer = styled.div`
   position: fixed;
-  top: 15%;
+  top: 20%;
   left: 15px;
+  background-color: ${(props) => props.theme.colors?.darkBlue};
+  border-radius: 50%;
+  padding: 25px 10px;
+  @media screen and (max-width: 800px) {
+    padding: 20px 6px;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 16px 4px;
+  }
+  @media screen and (max-width: 450px) {
+    padding: 14px 2px;
+    top: 35%;
+  }
 `;
 
 export const ProductDetailAll = styled.div`

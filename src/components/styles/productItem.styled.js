@@ -9,8 +9,8 @@ export const ProductItemContainer = styled.div`
   color: ${(props) => props.theme.colors?.darkBlue};
   font-family: ${(props) => props.theme.fonts[0]};
   cursor: pointer;
-  -webkit-box-shadow: 5px 0px 10px 0px #000000;
-  box-shadow: 1px 0px 10px 0px #000000;
+  /*   -webkit-box-shadow: 5px 0px 10px 0px #000000;
+  box-shadow: 1px 0px 10px 0px #000000; */
 `;
 
 export const ProductImageContainer = styled.div`

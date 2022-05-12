@@ -76,9 +76,6 @@ function App() {
       navigate("/");
     }
   };
-  /*   function saveId(id) {
-    localStorage.setItem(id, "id");
-  } */
 
   return (
     <StyledApp className="App">
@@ -93,8 +90,7 @@ function App() {
           list={list}
           element={
             <ProductDetail
-              /*               saveId={saveId}
-               */ getCartInfo={getCartInfo}
+              getCartInfo={getCartInfo}
               getSelectOption={getSelectOption}
               setDetailId={setDetailId}
             />
