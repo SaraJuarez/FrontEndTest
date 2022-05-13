@@ -1,24 +1,19 @@
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
 import {
   NavUnlisted,
   CustomizedBreadCrumbs,
-} from "../styles/breadcrumb.styled";
+} from "../../styles/breadcrumb.styled";
 import { useLocation } from "react-router-dom";
 function BreadCrumb(props) {
   const { detailId } = props;
   const location = useLocation();
 
-  function handleClick(e) {
-    e.preventDefvault();
-    console.info("You clicked a breadcrumb.");
-  }
-
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="presentation">
       <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">
         <NavUnlisted>
           <Link
+            id="home"
             style={{
               textDecoration: "none",
               color: `${location.pathname === "/" ? "white" : "#caf0f8"}`,
@@ -31,6 +26,7 @@ function BreadCrumb(props) {
         </NavUnlisted>
         <NavUnlisted>
           <Link
+            id="detail"
             style={{
               textDecoration: "none",
               color: `${location.pathname !== "/" ? "white" : "#caf0f8"}`,

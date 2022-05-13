@@ -11,8 +11,8 @@ import {
   SelectsContainer,
   Span,
 } from "../../components/styles/productDetail.styled";
-import Select from "../../components/atoms/Select";
-import Button from "../../components/atoms/Button";
+import Select from "../../components/atoms/select/Select";
+import Button from "../../components/atoms/button/Button";
 import { Link } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();

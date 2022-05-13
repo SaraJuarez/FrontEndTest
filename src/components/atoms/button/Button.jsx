@@ -1,4 +1,4 @@
-import { ButtonContainer, ButtonText } from "../styles/button.styled";
+import { ButtonContainer, ButtonText } from "../../styles/button.styled.js";
 function Button(props) {
   const { text, onClickFunction } = props;
   return (

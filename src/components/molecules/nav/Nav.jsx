@@ -5,7 +5,7 @@ import {
   StyledCart,
 } from "../../styles/nav.styled";
 import { Link } from "react-router-dom";
-import BreadCrumb from "../../atoms/Breadcrumb";
+import BreadCrumb from "../../atoms/breadcrumb/Breadcrumb";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 function Nav(props) {
   const { items, detailId } = props;

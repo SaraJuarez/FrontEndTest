@@ -1,10 +1,10 @@
-import ImageProduct from "../atoms/ImageProduct";
+import ImageProduct from "../../atoms/ImageProduct";
 import {
   ProductItemContainer,
   ProductImageContainer,
   ProductTextContainer,
   StyledSpan,
-} from "../styles/productItem.styled";
+} from "../../styles/productItem.styled";
 import { Link } from "react-router-dom";
 function ProductItem(props) {
   const { productInfo } = props;

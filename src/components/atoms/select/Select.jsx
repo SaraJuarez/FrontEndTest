@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { SelectStyled } from "../styles/select.styled";
+import { SelectStyled } from "../../styles/select.styled";
 
 function Select(props) {
   const { options, onChangeFunction, name } = props;

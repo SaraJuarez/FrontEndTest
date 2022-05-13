@@ -1,5 +1,5 @@
 import React from "react";
-import ProductItem from "../../components/organisms/ProductItem";
+import ProductItem from "../../components/organisms/productItem/ProductItem";
 import {
   ProductListGrid,
   ProductListContainer,
