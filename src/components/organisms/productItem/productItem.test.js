@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import ProductItem from "./ProductItem";
 import { createMemoryHistory } from "history";
-import { toBeInTheDocument } from "@testing-library/jest-dom";
 
 test("Elements in ProductItem", () => {
   const history = createMemoryHistory();

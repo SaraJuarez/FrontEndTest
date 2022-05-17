@@ -4,15 +4,15 @@ import ImageProduct from "../../components/atoms/ImageProduct";
 import { getMobileInfo } from "../../utils/api/api";
 import {
   ProductDetailContainer,
-  ProductDetailText,
   ProductDetailInfoActions,
   ProductDetailAll,
   LinkContainer,
   SelectsContainer,
-  Span,
+  StyledProductDetailText,
 } from "../../components/styles/productDetail.styled";
 import Select from "../../components/atoms/select/Select";
 import Button from "../../components/atoms/button/Button";
+import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import { Link } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();
@@ -37,52 +37,15 @@ function ProductDetail(props) {
       <ProductDetailAll>
         <ImageProduct image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>
-          <ProductDetailText>
-            <p>
-              <Span>Brand:</Span>
-              {mobileDetails?.brand}
-            </p>
-            <p>
-              <Span>Model:</Span>
-              {mobileDetails?.model}
-            </p>
-            <p>
-              <Span>Price</Span>
-              {mobileDetails?.price}$
-            </p>
-            <p>
-              <Span>CPU:</Span>
-              {mobileDetails?.cpu}
-            </p>
-            <p>
-              <Span>RAM:</Span>
-              {mobileDetails?.ram}
-            </p>
-            <p>
-              <Span>OS:</Span>
-              {mobileDetails?.os}
-            </p>
-            <p>
-              <Span>Screen resolution:</Span>
-              {mobileDetails?.displayResolution}
-            </p>
-            <p>
-              <Span>Battery:</Span>
-              {mobileDetails?.battery}
-            </p>
-            <p>
-              <Span>Camera:</Span>
-              {mobileDetails?.primaryCamera[0]}
-            </p>
-            <p>
-              <Span>Dimensions:</Span>
-              {mobileDetails?.dimentions}
-            </p>
-            <p>
-              <Span>Weight:</Span>
-              {mobileDetails?.weight}
-            </p>
-          </ProductDetailText>
+          <StyledProductDetailText>
+            {mobileDetails !== undefined
+              ? Object.keys(mobileDetails).map((item, i) => {
+                  return (
+                    <ProductDetailText type={item} info={mobileDetails[item]} />
+                  );
+                })
+              : null}
+          </StyledProductDetailText>
           <SelectsContainer>
             <Select
               onChangeFunction={getSelectOption}

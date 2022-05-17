@@ -8,7 +8,7 @@ export const ProductDetailContainer = styled.div`
   background-color: ${(props) => props.theme.colors?.lightBlue};
 `;
 
-export const ProductDetailText = styled.div`
+export const StyledProductDetailText = styled.div`
   margin-left: 10%;
   color: ${(props) => props.theme.colors?.darkBlue};
   @media screen and (max-width: 800px) {
@@ -65,9 +65,4 @@ export const SelectsContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
-`;
-
-export const Span = styled.span`
-  font-weight: bold;
-  margin-right: 5px;
 `;

@@ -3,7 +3,7 @@ function Button(props) {
   const { text, onClickFunction } = props;
   return (
     <ButtonContainer onClick={onClickFunction}>
-      <ButtonText>{text}</ButtonText>
+      <ButtonText data-testid={text}>{text}</ButtonText>
     </ButtonContainer>
   );
 }
