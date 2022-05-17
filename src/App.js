@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   setTimeout(function () {
-    localStorage.setItem(undefined, "list");
+    localStorage.removeItem("list");
   }, 1000 * 60 * 60);
 
   const getList = async () => {
@@ -82,7 +82,7 @@ function App() {
       setObjectInfo(newObject);
       let itemsInTheCart = await setMobileInfo(objectInfo);
       setCartItems(cartItems + 1);
-      /*       setCartItems(itemsInTheCart); */
+      /*setCartItems(itemsInTheCart); */
       navigate("/");
     }
   };

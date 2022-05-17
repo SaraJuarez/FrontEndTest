@@ -9,6 +9,9 @@ export const ProductItemContainer = styled.div`
   color: ${(props) => props.theme.colors?.darkBlue};
   cursor: pointer;
   min-height: 170px;
+  @media screen and (max-width: 800px) {
+    min-height: 221px;
+  }
 `;
 
 export const ProductImageContainer = styled.div`
@@ -27,7 +30,16 @@ export const ProductTextContainer = styled.div`
   width: 50%;
 `;
 
+export const StyledP = styled.p`
+  @media screen and (max-width: 800px) {
+    font-size: 14px;
+  }
+`;
+
 export const StyledSpan = styled.span`
   font-weight: bold;
   margin-right: 5px;
+  @media screen and (max-width: 800px) {
+    font-size: 14px;
+  }
 `;
