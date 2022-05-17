@@ -5,7 +5,9 @@ import {
   ProductListContainer,
   ProductListTitle,
   StyledH2,
+  StyledP,
 } from "../../components/styles/productList.styled";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function ProductList(props) {
   const { list, filterFunction } = props;
@@ -16,11 +18,15 @@ function ProductList(props) {
         <input onChange={filterFunction} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>
-        {list !== undefined && list !== null
-          ? list.map((element) => {
-              return <ProductItem key={element.id} productInfo={element} />;
-            })
-          : null}
+        {list !== undefined && list !== null ? (
+          list.map((element) => {
+            return <ProductItem key={element.id} productInfo={element} />;
+          })
+        ) : list !== null ? (
+          <CircularProgress />
+        ) : (
+          <StyledP>There isn't elements on the list</StyledP>
+        )}
       </ProductListGrid>
     </ProductListContainer>
   );

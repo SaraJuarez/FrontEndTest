@@ -66,3 +66,11 @@ export const SelectsContainer = styled.div`
     align-items: flex-start;
   }
 `;
+
+export const CircularProgressDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;

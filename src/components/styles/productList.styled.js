@@ -41,3 +41,7 @@ export const StyledH2 = styled.h2`
     font-size: 18px;
   }
 `;
+
+export const StyledP = styled.p`
+  font-weight: bold;
+`;

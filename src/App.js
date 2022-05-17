@@ -42,7 +42,7 @@ function App() {
       setList(result);
       localStorage.setItem("list", JSON.stringify(result));
     } else {
-      setList(undefined);
+      setList(null);
     }
   };
 

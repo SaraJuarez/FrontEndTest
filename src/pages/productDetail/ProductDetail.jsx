@@ -9,11 +9,13 @@ import {
   LinkContainer,
   SelectsContainer,
   StyledProductDetailText,
+  CircularProgressDiv,
 } from "../../components/styles/productDetail.styled";
 import Select from "../../components/atoms/select/Select";
 import Button from "../../components/atoms/button/Button";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
@@ -38,13 +40,17 @@ function ProductDetail(props) {
         <ImageProduct image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>
           <StyledProductDetailText>
-            {mobileDetails !== undefined
-              ? Object.keys(mobileDetails).map((item, i) => {
-                  return (
-                    <ProductDetailText type={item} info={mobileDetails[item]} />
-                  );
-                })
-              : null}
+            {mobileDetails !== undefined ? (
+              Object.keys(mobileDetails).map((item, i) => {
+                return (
+                  <ProductDetailText type={item} info={mobileDetails[item]} />
+                );
+              })
+            ) : (
+              <CircularProgressDiv>
+                <CircularProgress />
+              </CircularProgressDiv>
+            )}
           </StyledProductDetailText>
           <SelectsContainer>
             <Select
