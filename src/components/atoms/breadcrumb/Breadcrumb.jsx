@@ -13,6 +13,7 @@ function BreadCrumb(props) {
       <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">
         <NavUnlisted>
           <Link
+            data-testid="home"
             id="home"
             style={{
               textDecoration: "none",
@@ -26,6 +27,7 @@ function BreadCrumb(props) {
         </NavUnlisted>
         <NavUnlisted>
           <Link
+            data-testid="detail"
             id="detail"
             style={{
               textDecoration: "none",
