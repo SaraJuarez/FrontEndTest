@@ -11,6 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function ProductList(props) {
   const { list, filterFunction } = props;
+
   return (
     <ProductListContainer>
       <ProductListTitle>

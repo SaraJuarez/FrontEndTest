@@ -14,7 +14,6 @@ export const getMobileInfo = async (id) => {
     const response = await axios.get(`${apiUrl}api/product/${id}`);
     return response.data;
   } catch (error) {
-    console.log(error);
     return null;
   }
 };
@@ -27,11 +26,8 @@ export const setMobileInfo = async (infoMobile) => {
       storageCode: infoMobile.storage,
     };
     let response = await axios.post(`${apiUrl}api/cart`, info);
-    console.log(response);
-    debugger;
     return response.data.count;
   } catch (error) {
-    console.log(error);
     return null;
   }
 };

@@ -80,9 +80,10 @@ function App() {
       let newObject = objectInfo;
       newObject.id = idMobile;
       setObjectInfo(newObject);
+      /* The POST method only returns 1, so I prefer to make the sum */
       let itemsInTheCart = await setMobileInfo(objectInfo);
-      setCartItems(cartItems + 1);
       /*setCartItems(itemsInTheCart); */
+      setCartItems(cartItems + 1);
       navigate("/");
     }
   };
