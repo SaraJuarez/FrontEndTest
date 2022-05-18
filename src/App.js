@@ -80,11 +80,14 @@ function App() {
       let newObject = objectInfo;
       newObject.id = idMobile;
       setObjectInfo(newObject);
-      /* The POST method only returns 1, so I prefer to make the sum */
+      /* The POST method only returns 1, so I prefer to make the sum here */
       let itemsInTheCart = await setMobileInfo(objectInfo);
-      /*setCartItems(itemsInTheCart); */
-      setCartItems(cartItems + 1);
-      navigate("/");
+      if (itemsInTheCart === 1) {
+        setCartItems(cartItems + 1);
+        navigate("/");
+      } else if (itemsInTheCart === null) {
+        window.alert("An error has ocurred");
+      }
     }
   };
 

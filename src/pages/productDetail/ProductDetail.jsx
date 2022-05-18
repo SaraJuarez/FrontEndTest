@@ -16,14 +16,22 @@ import Button from "../../components/atoms/button/Button";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
   const { getSelectOption, getCartInfo, getSelectDefault, setDetailId } = props;
+  let navigate = useNavigate();
 
   const getMobileDetails = async () => {
     let info = await getMobileInfo(id);
-    setMobileDetails(info);
+    if (info === null) {
+      window.alert("An error ocurred");
+      navigate("/");
+    } else {
+      setMobileDetails(info);
+    }
   };
 
   useEffect(() => {
