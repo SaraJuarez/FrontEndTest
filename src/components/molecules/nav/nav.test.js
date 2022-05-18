@@ -1,13 +1,17 @@
-import { fireEvent, render, screen, MemoryRouter, getByText } from "@testing-library/react";
-import Theme from '../../../Theme';
+import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "./Nav";
-import {createMemoryHistory} from 'history';
-import { MemoryRouter as Router } from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { MemoryRouter as Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
-test('If heading is present', async()=> {
-    render(<Nav />, {wrapper: Router})
-
-    // verify page content for expected route
-    expect(screen.getByText(/Mobile Catalog/i)).toBeInTheDocument();
-})
+test("If heading is present", async () => {
+  const history = createMemoryHistory();
+  render(
+    <Router location={history.location} navigator={history}>
+      <Nav />
+    </Router>
+  );
+  expect(screen.getAllByText(/Mobile Catalog/i)[0]).toBeInTheDocument();
+  const headingLink = screen.getAllByText(/Mobile Catalog/i)[0];
+  fireEvent.click(headingLink);
+  expect(history.location.pathname).toBe("/");
+});

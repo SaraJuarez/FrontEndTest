@@ -1,15 +1,26 @@
-import { NavContainer } from "../../styles/nav.styled";
-import { createMemoryHistory } from "history";
+import {
+  NavContainer,
+  StyledH1,
+  StyledP,
+  StyledCart,
+} from "../../styles/nav.styled";
 import { Link } from "react-router-dom";
-
+import BreadCrumb from "../../atoms/breadcrumb/Breadcrumb";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 function Nav(props) {
-  const history = createMemoryHistory();
-  console.log(history);
+  const { items, detailId } = props;
   return (
     <NavContainer>
-      <Link style={{ textDecoration: "none" }} to="/detail">
-        <h1>Mobile Catalog</h1>
-      </Link>
+      <div>
+        <Link style={{ textDecoration: "none" }} to="/">
+          <StyledH1>Mobile Catalog</StyledH1>
+        </Link>
+        <BreadCrumb detailId={detailId} />
+      </div>
+      <StyledCart>
+        <StyledP>Items in the cart: {items}</StyledP>
+        <ShoppingCartIcon />
+      </StyledCart>
     </NavContainer>
   );
 }
