@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
@@ -15,8 +16,14 @@ const theme = {
   },
 };
 
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+const Theme = ({ children }) => {
+  const location = useLocation();
+  theme.location = location.pathname;
+  return (
+    <ThemeProvider location={location.pathname} theme={theme}>
+      {children}
+    </ThemeProvider>
+  );
+};
 
 export default Theme;

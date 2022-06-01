@@ -6,16 +6,12 @@ import {
   StyledSpan,
   StyledP,
 } from "../../styles/productItem.styled";
-import { Link } from "react-router-dom";
+import { StyledLink } from "../../styles/nav.styled";
 function ProductItem(props) {
   const { productInfo } = props;
 
   return (
-    <Link
-      id="productItem"
-      style={{ textDecoration: "none" }}
-      to={`/${productInfo.id}`}
-    >
+    <StyledLink id="productItem" to={`/${productInfo.id}`}>
       <ProductItemContainer>
         <ProductImageContainer>
           <ImageProduct image={productInfo.imgUrl} />
@@ -35,7 +31,7 @@ function ProductItem(props) {
           </StyledP>
         </ProductTextContainer>
       </ProductItemContainer>
-    </Link>
+    </StyledLink>
   );
 }
 

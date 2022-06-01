@@ -3,6 +3,7 @@ import {
   StyledH1,
   StyledP,
   StyledCart,
+  StyledLink,
 } from "../../styles/nav.styled";
 import { Link } from "react-router-dom";
 import BreadCrumb from "../../atoms/breadcrumb/Breadcrumb";
@@ -12,9 +13,9 @@ function Nav(props) {
   return (
     <NavContainer>
       <div>
-        <Link style={{ textDecoration: "none" }} to="/">
+        <StyledLink to="/">
           <StyledH1>Mobile Catalog</StyledH1>
-        </Link>
+        </StyledLink>
         <BreadCrumb detailId={detailId} />
       </div>
       <StyledCart>

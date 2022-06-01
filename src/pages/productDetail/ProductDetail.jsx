@@ -10,6 +10,7 @@ import {
   SelectsContainer,
   StyledProductDetailText,
   CircularProgressDiv,
+  StyledLink,
 } from "../../components/styles/productDetail.styled";
 import Select from "../../components/atoms/select/Select";
 import Button from "../../components/atoms/button/Button";
@@ -55,9 +56,9 @@ function ProductDetail(props) {
 
   return (
     <ProductDetailContainer>
-      <Link style={{ textDecoration: "none", color: "#caf0f8" }} to="/">
+      <StyledLink style={{ textDecoration: "none", color: "#caf0f8" }} to="/">
         <LinkContainer>Go back</LinkContainer>
-      </Link>
+      </StyledLink>
       <ProductDetailAll>
         <ImageProduct image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>

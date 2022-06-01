@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ProductDetailContainer = styled.div`
   display: flex;
@@ -40,6 +41,11 @@ export const LinkContainer = styled.div`
     padding: 14px 2px;
     top: 35%;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: "none";
+  color: "#caf0f8";
 `;
 
 export const ProductDetailAll = styled.div`
