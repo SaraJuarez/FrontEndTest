@@ -83,7 +83,6 @@ function App() {
       setSelectedOption(newObject);
       /* The POST method only returns 1, so I prefer to make the sum here */
       let itemsInTheCart = await setMobileInfo(selectedOption);
-      debugger;
       if (itemsInTheCart === 1) {
         setCartItems(cartItems + 1);
         navigate("/");
