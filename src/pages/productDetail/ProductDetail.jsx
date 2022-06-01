@@ -21,7 +21,13 @@ import { useNavigate } from "react-router-dom";
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
-  const { getSelectOption, getCartInfo, getSelectDefault, setDetailId } = props;
+  const {
+    getSelectOption,
+    getCartInfo,
+    getSelectDefault,
+    setDetailId,
+    setSelectedOption,
+  } = props;
   let navigate = useNavigate();
 
   const getMobileDetails = async () => {
@@ -30,6 +36,14 @@ function ProductDetail(props) {
       window.alert("An error ocurred");
       navigate("/");
     } else {
+      let colorDefault = info.options.colors[0].code;
+      let storageDefault = info.options.storages[0].code;
+      let newObjectDefault = {
+        id: info.id,
+        color: colorDefault,
+        storage: storageDefault,
+      };
+      setSelectedOption(newObjectDefault);
       setMobileDetails(info);
     }
   };
@@ -51,7 +65,11 @@ function ProductDetail(props) {
             {mobileDetails !== undefined ? (
               Object.keys(mobileDetails).map((item, i) => {
                 return (
-                  <ProductDetailText type={item} info={mobileDetails[item]} />
+                  <ProductDetailText
+                    key={i}
+                    type={item}
+                    info={mobileDetails[item]}
+                  />
                 );
               })
             ) : (
@@ -76,7 +94,7 @@ function ProductDetail(props) {
           </SelectsContainer>
         </ProductDetailInfoActions>
       </ProductDetailAll>
-      <Button onClickFunction={() => getCartInfo(id)} text="Add" />
+      <Button onClickFunction={getCartInfo} text="Add" />
     </ProductDetailContainer>
   );
 }

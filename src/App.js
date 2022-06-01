@@ -11,11 +11,16 @@ function App() {
   const [list, setList] = useState();
   const [cartItems, setCartItems] = useState(0);
   const [detailId, setDetailId] = useState();
-  const [objectInfo, setObjectInfo] = useState({
+  const [selectedOption, setSelectedOption] = useState({
     id: "",
     color: "",
     storage: "",
   });
+  /*   const [objectInfo, setObjectInfo] = useState({
+    id: "",
+    color: "",
+    storage: "",
+  }); */
 
   let navigate = useNavigate();
 
@@ -61,27 +66,24 @@ function App() {
     }
   };
 
-  function getSelectOption(e) {
-    if (e.target.value === "") {
-      window.alert(`Please, select a valid ${e.target.name} value`);
-      return;
-    } else {
-      let value = e.target.value;
-      let name = e.target.name;
-      setObjectInfo((prev) => ({ ...prev, [name]: value }));
+  const handleSelect = (selected) => {
+    if (selected !== null) {
+      let selectedName = Object.keys(selected)[0];
+      let selectedValue = Object.values(selected)[0];
+      setSelectedOption((prev) => ({ ...prev, [selectedName]: selectedValue }));
     }
-  }
+  };
 
   const getCartInfo = async (idMobile) => {
-    if (objectInfo.color === "" || objectInfo.storage === "") {
+    if (selectedOption.color === "" || selectedOption.storage === "") {
       window.alert("Please, select color and storage capacity before adding ");
       return;
     } else {
-      let newObject = objectInfo;
-      newObject.id = idMobile;
-      setObjectInfo(newObject);
+      let newObject = selectedOption;
+      setSelectedOption(newObject);
       /* The POST method only returns 1, so I prefer to make the sum here */
-      let itemsInTheCart = await setMobileInfo(objectInfo);
+      let itemsInTheCart = await setMobileInfo(selectedOption);
+      debugger;
       if (itemsInTheCart === 1) {
         setCartItems(cartItems + 1);
         navigate("/");
@@ -104,8 +106,9 @@ function App() {
           list={list}
           element={
             <ProductDetail
+              setSelectedOption={setSelectedOption}
               getCartInfo={getCartInfo}
-              getSelectOption={getSelectOption}
+              getSelectOption={handleSelect}
               setDetailId={setDetailId}
             />
           }
