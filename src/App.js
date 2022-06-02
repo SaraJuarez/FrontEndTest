@@ -6,6 +6,7 @@ import Nav from "./components/molecules/nav/Nav";
 import { getMobileList, setMobileInfo } from "./utils/api/api";
 import { StyledApp } from "./components/styles/app.styled";
 import { useNavigate } from "react-router-dom";
+import { setSelectedPhones } from "./utils/cache";
 
 function App() {
   const [list, setList] = useState();
@@ -21,7 +22,6 @@ function App() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    debugger;
     if (
       localStorage.getItem("list") === undefined ||
       localStorage.getItem("list") === false ||
@@ -72,21 +72,17 @@ function App() {
     }
   };
 
-  const getCartInfo = async (idMobile) => {
-    if (selectedOption.color === "" || selectedOption.storage === "") {
-      window.alert("Please, select color and storage capacity before adding ");
-      return;
-    } else {
-      let newObject = selectedOption;
-      setSelectedOption(newObject);
-      /* The POST method only returns 1, so I prefer to make the sum here */
-      let itemsInTheCart = await setMobileInfo(selectedOption);
-      if (itemsInTheCart === 1) {
-        setCartItems(cartItems + 1);
-        navigate("/");
-      } else if (itemsInTheCart.isAxiosError) {
-        window.alert(itemsInTheCart.message);
-      }
+  const getCartInfo = async () => {
+    setSelectedPhones(selectedOption);
+    let newObject = selectedOption;
+    setSelectedOption(newObject);
+    /* The POST method only returns 1, so I prefer to make the sum here */
+    let itemsInTheCart = await setMobileInfo(selectedOption);
+    if (itemsInTheCart === 1) {
+      setCartItems(cartItems + 1);
+      navigate("/");
+    } else if (itemsInTheCart.isAxiosError) {
+      window.alert(itemsInTheCart.message);
     }
   };
 

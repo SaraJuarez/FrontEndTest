@@ -80,3 +80,17 @@ export const CircularProgressDiv = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
+
+export const FakeButton = styled.div`
+  border-radius: 15px;
+  background-color: ${(props) => props.theme.colors?.darkBlue};
+  text-align: center;
+  color: white;
+  opacity: 0.4;
+  padding: 10px 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 30%;
+  box-shadow: 5px 0px 15px 0px #000000;
+  cursor: not-allowed;
+`;

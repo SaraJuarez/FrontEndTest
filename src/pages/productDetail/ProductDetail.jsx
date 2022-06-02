@@ -11,16 +11,19 @@ import {
   StyledProductDetailText,
   CircularProgressDiv,
   StyledLink,
+  FakeButton,
 } from "../../components/styles/productDetail.styled";
 import Select from "../../components/atoms/select/Select";
 import Button from "../../components/atoms/button/Button";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { isAlreadyInCache } from "../../utils/cache";
 
 function ProductDetail(props) {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
+  const [isAlreadySelected, setAlreadySelected] = useState(false);
   const {
     getSelectOption,
     getCartInfo,
@@ -31,6 +34,8 @@ function ProductDetail(props) {
   let navigate = useNavigate();
 
   const getMobileDetails = async () => {
+    let isAlready = isAlreadyInCache(id);
+    setAlreadySelected(isAlready);
     let info = await getMobileInfo(id);
     if (info.isAxiosError) {
       window.alert(info.message);
@@ -95,7 +100,11 @@ function ProductDetail(props) {
           </SelectsContainer>
         </ProductDetailInfoActions>
       </ProductDetailAll>
-      <Button onClickFunction={getCartInfo} text="Add" />
+      {!isAlreadySelected ? (
+        <Button onClickFunction={getCartInfo} text="Add" />
+      ) : (
+        <FakeButton>You have already add this phone</FakeButton>
+      )}
     </ProductDetailContainer>
   );
 }
