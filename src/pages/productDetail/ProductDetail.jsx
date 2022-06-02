@@ -18,7 +18,11 @@ import Button from "../../components/atoms/button/Button";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { isAlreadyInCache } from "../../utils/cache";
+import {
+  isAlreadyInSelected,
+  saveMobileDetails,
+  informationAlreadyPresent,
+} from "../../utils/cache";
 
 function ProductDetail(props) {
   const { id } = useParams();
@@ -34,9 +38,10 @@ function ProductDetail(props) {
   let navigate = useNavigate();
 
   const getMobileDetails = async () => {
-    let isAlready = isAlreadyInCache(id);
-    setAlreadySelected(isAlready);
+    let isAlreadyInCart = isAlreadyInSelected(id);
+    setAlreadySelected(isAlreadyInCart);
     let info = await getMobileInfo(id);
+    saveMobileDetails(info);
     if (info.isAxiosError) {
       window.alert(info.message);
       navigate("/");
@@ -55,7 +60,24 @@ function ProductDetail(props) {
 
   useEffect(() => {
     setDetailId(id);
-    getMobileDetails();
+    if (localStorage.getItem("mobileDetails") === null) {
+      getMobileDetails();
+    } else {
+      let infoInCache = informationAlreadyPresent(id);
+      if (infoInCache === undefined) {
+        getMobileDetails();
+      } else {
+        let isAlready = isAlreadyInSelected(id);
+        setAlreadySelected(isAlready);
+        setMobileDetails(infoInCache);
+        let newObjectDefault = {
+          id: infoInCache.id,
+          color: infoInCache.options.colors[0].code,
+          storage: infoInCache.options.storages[0].code,
+        };
+        setSelectedOption(newObjectDefault);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

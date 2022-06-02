@@ -10,11 +10,32 @@ export const setSelectedPhones = (selectedOption) => {
   }
 };
 
-export const isAlreadyInCache = (id) => {
+export const isAlreadyInSelected = (id) => {
   let savedPhones = JSON.parse(localStorage.getItem("selectedPhones"));
   if (savedPhones !== null) {
     return savedPhones.some((option) => option === id);
   } else {
     return false;
+  }
+};
+
+export const informationAlreadyPresent = (id) => {
+  let savedPhones = JSON.parse(localStorage.getItem("mobileDetails"));
+  if (savedPhones !== null) {
+    let mobileInfo = savedPhones.find((element) => element.id === id);
+    return mobileInfo;
+  } else {
+    return null;
+  }
+};
+
+export const saveMobileDetails = (mobileDetail) => {
+  let mobileDetailsArray = localStorage.getItem("mobileDetails");
+  if (mobileDetailsArray === null) {
+    localStorage.setItem("mobileDetails", JSON.stringify([mobileDetail]));
+  } else {
+    let savedArray = JSON.parse(mobileDetailsArray);
+    savedArray.push(mobileDetail);
+    localStorage.setItem("mobileDetails", JSON.stringify(savedArray));
   }
 };
