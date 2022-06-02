@@ -5,7 +5,7 @@ export const getMobileList = async () => {
     const response = await axios.get(`${apiUrl}api/product`);
     return response.data;
   } catch (error) {
-    return null;
+    return error;
   }
 };
 
@@ -14,7 +14,7 @@ export const getMobileInfo = async (id) => {
     const response = await axios.get(`${apiUrl}api/product/${id}`);
     return response.data;
   } catch (error) {
-    return null;
+    return error;
   }
 };
 
@@ -28,6 +28,6 @@ export const setMobileInfo = async (infoMobile) => {
     let response = await axios.post(`${apiUrl}api/cart`, info);
     return response.data.count;
   } catch (error) {
-    return null;
+    return error;
   }
 };

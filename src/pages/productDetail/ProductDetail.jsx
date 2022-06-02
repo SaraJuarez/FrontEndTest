@@ -15,7 +15,6 @@ import {
 import Select from "../../components/atoms/select/Select";
 import Button from "../../components/atoms/button/Button";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
-import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -33,8 +32,8 @@ function ProductDetail(props) {
 
   const getMobileDetails = async () => {
     let info = await getMobileInfo(id);
-    if (info === null) {
-      window.alert("An error ocurred");
+    if (info.isAxiosError) {
+      window.alert(info.message);
       navigate("/");
     } else {
       let colorDefault = info.options.colors[0].code;
@@ -52,6 +51,7 @@ function ProductDetail(props) {
   useEffect(() => {
     setDetailId(id);
     getMobileDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

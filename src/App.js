@@ -11,20 +11,17 @@ function App() {
   const [list, setList] = useState();
   const [cartItems, setCartItems] = useState(0);
   const [detailId, setDetailId] = useState();
+  const [error, setError] = useState();
   const [selectedOption, setSelectedOption] = useState({
     id: "",
     color: "",
     storage: "",
   });
-  /*   const [objectInfo, setObjectInfo] = useState({
-    id: "",
-    color: "",
-    storage: "",
-  }); */
 
   let navigate = useNavigate();
 
   useEffect(() => {
+    debugger;
     if (
       localStorage.getItem("list") === undefined ||
       localStorage.getItem("list") === false ||
@@ -43,11 +40,12 @@ function App() {
 
   const getList = async () => {
     let result = await getMobileList();
-    if (result !== null) {
+    if (result.isAxiosError === true) {
+      setError(result.message);
+      setList(null);
+    } else {
       setList(result);
       localStorage.setItem("list", JSON.stringify(result));
-    } else {
-      setList(null);
     }
   };
 
@@ -86,8 +84,8 @@ function App() {
       if (itemsInTheCart === 1) {
         setCartItems(cartItems + 1);
         navigate("/");
-      } else if (itemsInTheCart === null) {
-        window.alert("An error has ocurred");
+      } else if (itemsInTheCart.isAxiosError) {
+        window.alert(itemsInTheCart.message);
       }
     }
   };
@@ -98,7 +96,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<ProductList filterFunction={filterList} list={list} />}
+          element={
+            <ProductList
+              filterFunction={filterList}
+              list={list}
+              error={error}
+            />
+          }
         />
         <Route
           path="/:id"

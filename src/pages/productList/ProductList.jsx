@@ -10,7 +10,7 @@ import {
 import CircularProgress from "@mui/material/CircularProgress";
 
 function ProductList(props) {
-  const { list, filterFunction } = props;
+  const { list, filterFunction, error } = props;
 
   return (
     <ProductListContainer>
@@ -23,10 +23,10 @@ function ProductList(props) {
           list.map((element) => {
             return <ProductItem key={element.id} productInfo={element} />;
           })
-        ) : list !== null ? (
-          <CircularProgress />
+        ) : error ? (
+          <StyledP>{error}</StyledP>
         ) : (
-          <StyledP>There isn't elements on the list</StyledP>
+          <CircularProgress />
         )}
       </ProductListGrid>
     </ProductListContainer>
