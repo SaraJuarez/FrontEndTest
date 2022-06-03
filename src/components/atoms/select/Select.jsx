@@ -3,13 +3,14 @@ import { SelectStyled } from "../../styles/select.styled";
 
 function Select(props) {
   const { options, onChangeFunction, name } = props;
-
+  // eslint-disable-next-line
   const [selectedOption, setSelectedOption] = useState(
     options ? options[0] : null
   );
 
   useEffect(() => {
     onChangeFunction(selectedOption);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelect = (e) => {
