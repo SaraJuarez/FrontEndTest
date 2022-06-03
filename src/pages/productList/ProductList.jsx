@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductItem from "../../components/organisms/productItem/ProductItem";
 import {
   ProductListGrid,
@@ -8,15 +8,54 @@ import {
   StyledP,
 } from "../../components/styles/productList.styled";
 import CircularProgress from "@mui/material/CircularProgress";
+import { getMobileList } from "../../utils/api/api";
 
 function ProductList(props) {
-  const { list, filterFunction, error } = props;
+  const [list, setList] = useState();
+  const [error, setError] = useState();
+  useEffect(() => {
+    if (
+      localStorage.getItem("list") === undefined ||
+      localStorage.getItem("list") === false ||
+      localStorage.getItem("list") === null
+    ) {
+      getList();
+    } else {
+      let stringList = JSON.parse(localStorage.getItem("list"));
+      setList(stringList);
+    }
+  }, []);
+
+  const getList = async () => {
+    let result = await getMobileList();
+    if (result.isAxiosError === true) {
+      setError(result.message);
+      setList(null);
+    } else {
+      setList(result);
+      localStorage.setItem("list", JSON.stringify(result));
+    }
+  };
+  const filterList = (e) => {
+    let valueInput = e.target.value;
+    if (valueInput.length > 0) {
+      let result = list.filter((item) => {
+        return (
+          item.brand.toLowerCase().includes(valueInput) ||
+          item.model.toLowerCase().includes(valueInput)
+        );
+      });
+      setList(result);
+    } else {
+      getList();
+    }
+  };
 
   return (
     <ProductListContainer>
       <ProductListTitle>
         <StyledH2>Mobile List</StyledH2>
-        <input onChange={filterFunction} placeholder="search" />
+        <input onChange={filterList} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>
         {list !== undefined && list !== null ? (

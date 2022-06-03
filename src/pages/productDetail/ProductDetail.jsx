@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageProduct from "../../components/atoms/ImageProduct";
-import { getMobileInfo } from "../../utils/api/api";
+import { getMobileInfo, setMobileInfo } from "../../utils/api/api";
 import {
   ProductDetailContainer,
   ProductDetailInfoActions,
@@ -23,40 +23,20 @@ import {
   saveMobileDetails,
   informationAlreadyPresent,
 } from "../../utils/cache";
-
-function ProductDetail(props) {
+import { setSelectedPhones } from "../../utils/cache";
+function ProductDetail() {
   const { id } = useParams();
+  const [cartItems, setCartItems] = useState(0);
+  const [detailId, setDetailId] = useState();
   const [mobileDetails, setMobileDetails] = useState();
   const [isAlreadySelected, setAlreadySelected] = useState(false);
-  const {
-    getSelectOption,
-    getCartInfo,
-    getSelectDefault,
-    setDetailId,
-    setSelectedOption,
-  } = props;
-  let navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState({
+    id: "",
+    color: "",
+    storage: "",
+  });
 
-  const getMobileDetails = async () => {
-    let isAlreadyInCart = isAlreadyInSelected(id);
-    setAlreadySelected(isAlreadyInCart);
-    let info = await getMobileInfo(id);
-    saveMobileDetails(info);
-    if (info.isAxiosError) {
-      window.alert(info.message);
-      navigate("/");
-    } else {
-      let colorDefault = info.options.colors[0].code;
-      let storageDefault = info.options.storages[0].code;
-      let newObjectDefault = {
-        id: info.id,
-        color: colorDefault,
-        storage: storageDefault,
-      };
-      setSelectedOption(newObjectDefault);
-      setMobileDetails(info);
-    }
-  };
+  let navigate = useNavigate();
 
   useEffect(() => {
     setDetailId(id);
@@ -80,6 +60,49 @@ function ProductDetail(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleSelect = (selected) => {
+    if (selected !== null) {
+      let selectedName = Object.keys(selected)[0];
+      let selectedValue = Object.values(selected)[0];
+      setSelectedOption((prev) => ({ ...prev, [selectedName]: selectedValue }));
+    }
+  };
+
+  const getMobileDetails = async () => {
+    let isAlreadyInCart = isAlreadyInSelected(id);
+    setAlreadySelected(isAlreadyInCart);
+    let info = await getMobileInfo(id);
+    saveMobileDetails(info);
+    if (info.isAxiosError) {
+      window.alert(info.message);
+      navigate("/");
+    } else {
+      let colorDefault = info.options.colors[0].code;
+      let storageDefault = info.options.storages[0].code;
+      let newObjectDefault = {
+        id: info.id,
+        color: colorDefault,
+        storage: storageDefault,
+      };
+      setSelectedOption(newObjectDefault);
+      setMobileDetails(info);
+    }
+  };
+
+  const getCartInfo = async () => {
+    setSelectedPhones(selectedOption);
+    let newObject = selectedOption;
+    setSelectedOption(newObject);
+    /* The POST method only returns 1, so I prefer to make the sum here */
+    let itemsInTheCart = await setMobileInfo(selectedOption);
+    if (itemsInTheCart === 1) {
+      setCartItems(cartItems + 1);
+      navigate("/");
+    } else if (itemsInTheCart.isAxiosError) {
+      window.alert(itemsInTheCart.message);
+    }
+  };
 
   return (
     <ProductDetailContainer>
@@ -108,15 +131,13 @@ function ProductDetail(props) {
           </StyledProductDetailText>
           <SelectsContainer>
             <Select
-              onChangeFunction={getSelectOption}
+              onChangeFunction={handleSelect}
               options={mobileDetails?.options.colors}
-              getSelectDefault={getSelectDefault}
               name="color"
             />
             <Select
-              onChangeFunction={getSelectOption}
+              onChangeFunction={handleSelect}
               options={mobileDetails?.options.storages}
-              getSelectDefault={getSelectDefault}
               name="storage"
             />
           </SelectsContainer>
