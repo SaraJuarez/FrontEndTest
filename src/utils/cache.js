@@ -1,9 +1,6 @@
 export const setSelectedPhones = (selectedOption) => {
   let savedPhones = localStorage.getItem("selectedPhones");
   if (savedPhones === null) {
-    debugger;
-    let now = Date.now();
-    console.log(now);
     localStorage.setItem("selectedPhones", JSON.stringify([selectedOption.id]));
   } else {
     let savedArray = JSON.parse(savedPhones);

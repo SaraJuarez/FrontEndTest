@@ -1,3 +1,6 @@
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+import BreadCrumb from "../../atoms/breadcrumb/Breadcrumb";
 import {
   NavContainer,
   StyledH1,
@@ -5,8 +8,7 @@ import {
   StyledCart,
   StyledLink,
 } from "../../styles/nav.styled";
-import BreadCrumb from "../../atoms/breadcrumb/Breadcrumb";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 function Nav(props) {
   const { items, detailId } = props;
   return (

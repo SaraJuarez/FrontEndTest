@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import ProductDetail from "./pages/productDetail/ProductDetail";
-import ProductList from "./pages/productList/ProductList";
+
 import Nav from "./components/molecules/nav/Nav";
 import { StyledApp } from "./components/styles/app.styled";
+import ProductDetail from "./pages/productDetail/ProductDetail";
+import ProductList from "./pages/productList/ProductList";
 
 function App() {
   const [cartItems, setCartItems] = useState(0);
@@ -18,7 +19,16 @@ function App() {
       <Nav detailId={detailId} items={cartItems} />
       <Routes>
         <Route path="/" element={<ProductList />} />
-        <Route path="/:id" element={<ProductDetail />} />
+        <Route
+          path="/:id"
+          element={
+            <ProductDetail
+              setDetailId={setDetailId}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          }
+        />
       </Routes>
     </StyledApp>
   );

@@ -1,7 +1,12 @@
+import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../../components/atoms/button/Button";
 import ImageProduct from "../../components/atoms/ImageProduct";
-import { getMobileInfo, setMobileInfo } from "../../utils/api/api";
+import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
+import Select from "../../components/atoms/select/Select";
 import {
   ProductDetailContainer,
   ProductDetailInfoActions,
@@ -13,21 +18,17 @@ import {
   StyledLink,
   FakeButton,
 } from "../../components/styles/productDetail.styled";
-import Select from "../../components/atoms/select/Select";
-import Button from "../../components/atoms/button/Button";
-import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
-import { CircularProgress } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { getMobileInfo, setMobileInfo } from "../../utils/api/api";
 import {
   isAlreadyInSelected,
   saveMobileDetails,
   informationAlreadyPresent,
 } from "../../utils/cache";
 import { setSelectedPhones } from "../../utils/cache";
-function ProductDetail() {
+
+function ProductDetail(props) {
+  const { setCartItems, cartItems, setDetailId } = props;
   const { id } = useParams();
-  const [cartItems, setCartItems] = useState(0);
-  const [detailId, setDetailId] = useState();
   const [mobileDetails, setMobileDetails] = useState();
   const [isAlreadySelected, setAlreadySelected] = useState(false);
   const [selectedOption, setSelectedOption] = useState({
@@ -96,6 +97,7 @@ function ProductDetail() {
     setSelectedOption(newObject);
     /* The POST method only returns 1, so I prefer to make the sum here */
     let itemsInTheCart = await setMobileInfo(selectedOption);
+    debugger;
     if (itemsInTheCart === 1) {
       setCartItems(cartItems + 1);
       navigate("/");

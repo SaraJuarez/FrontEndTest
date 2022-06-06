@@ -1,4 +1,6 @@
+import CircularProgress from "@mui/material/CircularProgress";
 import React, { useEffect, useState } from "react";
+
 import ProductItem from "../../components/organisms/productItem/ProductItem";
 import {
   ProductListGrid,
@@ -7,7 +9,6 @@ import {
   StyledH2,
   StyledP,
 } from "../../components/styles/productList.styled";
-import CircularProgress from "@mui/material/CircularProgress";
 import { getMobileList } from "../../utils/api/api";
 import { isDataExpired } from "../../utils/cache";
 
