@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/atoms/button/Button";
-import ImageProduct from "../../components/atoms/ImageProduct";
+import ImageProduct from "../../components/atoms/imageProduct/ImageProduct";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import Select from "../../components/atoms/select/Select";
 import {

@@ -10,7 +10,6 @@ import {
 function BreadCrumb(props) {
   const { detailId } = props;
   const location = useLocation();
-  console.log(location);
   return (
     <div role="presentation">
       <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">

@@ -10,6 +10,7 @@ import {
   StyledH2,
   StyledP,
 } from "../../components/styles/productList.styled";
+import useProduct from "../../hooks/useProduct";
 import { getMobileList } from "../../utils/api/api";
 import { isDataExpired } from "../../utils/cache";
 
@@ -17,6 +18,9 @@ function ProductList() {
   const [list, setList] = useState();
   const [copyList, setCopyList] = useState();
   const [error, setError] = useState();
+
+  const info = useProduct();
+  console.log(info);
 
   useEffect(() => {
     if (

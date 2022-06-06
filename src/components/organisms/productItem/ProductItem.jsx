@@ -1,4 +1,5 @@
-import ImageProduct from "../../atoms/ImageProduct";
+import ImageProduct from "../../atoms/imageProduct/ImageProduct";
+import { StyledLink } from "../../styles/nav.styled";
 import {
   ProductItemContainer,
   ProductImageContainer,
@@ -6,7 +7,6 @@ import {
   StyledSpan,
   StyledP,
 } from "../../styles/productItem.styled";
-import { StyledLink } from "../../styles/nav.styled";
 function ProductItem(props) {
   const { productInfo } = props;
 
