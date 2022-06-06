@@ -1,12 +1,16 @@
+import { useLocation } from "react-router-dom";
+
 import {
   NavUnlisted,
   CustomizedBreadCrumbs,
   LinkStyled,
   ReversedLinkStyled,
 } from "../../styles/breadcrumb.styled";
+
 function BreadCrumb(props) {
   const { detailId } = props;
-
+  const location = useLocation();
+  console.log(location);
   return (
     <div role="presentation">
       <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">
@@ -15,15 +19,17 @@ function BreadCrumb(props) {
             Main Catalog
           </LinkStyled>
         </NavUnlisted>
-        <NavUnlisted>
-          <ReversedLinkStyled
-            data-testid="detail"
-            id="detail"
-            to={detailId !== "undefined" ? `/${detailId}` : "#"}
-          >
-            Mobile Detail
-          </ReversedLinkStyled>
-        </NavUnlisted>
+        {location.pathname !== "/" && (
+          <NavUnlisted>
+            <ReversedLinkStyled
+              data-testid="detail"
+              id="detail"
+              to={`/${detailId}`}
+            >
+              Mobile Detail
+            </ReversedLinkStyled>
+          </NavUnlisted>
+        )}
       </CustomizedBreadCrumbs>
     </div>
   );

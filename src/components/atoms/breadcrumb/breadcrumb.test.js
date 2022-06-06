@@ -1,7 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Breadcrumb from "./Breadcrumb";
-import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
+
+import Breadcrumb from "./Breadcrumb";
+
 test("If Breadcrumb render correctly", () => {
   const history = createMemoryHistory();
   render(

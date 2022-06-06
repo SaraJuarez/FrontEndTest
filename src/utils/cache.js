@@ -1,3 +1,4 @@
+import moment from "moment";
 export const setSelectedPhones = (selectedOption) => {
   let savedPhones = localStorage.getItem("selectedPhones");
   if (savedPhones === null) {
@@ -40,6 +41,7 @@ export const saveMobileDetails = (mobileDetail) => {
 };
 
 export const isDataExpired = () => {
-  let savedTime = localStorage.getItem("creationDate");
-  return savedTime < Date.now();
+  let savedTime = JSON.parse(localStorage.getItem("creationDate"));
+  let expiringTime = moment(savedTime).add(1, "h");
+  return expiringTime < new moment();
 };

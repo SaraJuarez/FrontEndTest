@@ -1,4 +1,5 @@
 import CircularProgress from "@mui/material/CircularProgress";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 
 import ProductItem from "../../components/organisms/productItem/ProductItem";
@@ -14,6 +15,7 @@ import { isDataExpired } from "../../utils/cache";
 
 function ProductList() {
   const [list, setList] = useState();
+  const [copyList, setCopyList] = useState();
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -28,9 +30,11 @@ function ProductList() {
         localStorage.removeItem("list");
         localStorage.removeItem("mobileDetails");
         localStorage.removeItem("selectedPhones");
+        localStorage.removeItem("creationDate");
         getList();
       } else {
         let stringList = JSON.parse(localStorage.getItem("list"));
+        setCopyList(stringList);
         setList(stringList);
       }
     }
@@ -43,7 +47,8 @@ function ProductList() {
       setList(null);
     } else {
       setList(result);
-      let now = Date.now();
+      setCopyList(result);
+      let now = new moment();
       localStorage.setItem("list", JSON.stringify(result));
       localStorage.setItem("creationDate", JSON.stringify(now));
     }
@@ -52,7 +57,7 @@ function ProductList() {
   const filterList = (e) => {
     let valueInput = e.target.value;
     if (valueInput.length > 0) {
-      let result = list.filter((item) => {
+      let result = copyList.filter((item) => {
         return (
           item.brand.toLowerCase().includes(valueInput) ||
           item.model.toLowerCase().includes(valueInput)
