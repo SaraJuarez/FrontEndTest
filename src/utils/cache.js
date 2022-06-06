@@ -1,7 +1,9 @@
 export const setSelectedPhones = (selectedOption) => {
   let savedPhones = localStorage.getItem("selectedPhones");
   if (savedPhones === null) {
-    console.log(savedPhones);
+    debugger;
+    let now = Date.now();
+    console.log(now);
     localStorage.setItem("selectedPhones", JSON.stringify([selectedOption.id]));
   } else {
     let savedArray = JSON.parse(savedPhones);
@@ -38,4 +40,9 @@ export const saveMobileDetails = (mobileDetail) => {
     savedArray.push(mobileDetail);
     localStorage.setItem("mobileDetails", JSON.stringify(savedArray));
   }
+};
+
+export const isDataExpired = () => {
+  let savedTime = localStorage.getItem("creationDate");
+  return savedTime < Date.now();
 };

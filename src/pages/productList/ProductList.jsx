@@ -9,10 +9,12 @@ import {
 } from "../../components/styles/productList.styled";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getMobileList } from "../../utils/api/api";
+import { isDataExpired } from "../../utils/cache";
 
-function ProductList(props) {
+function ProductList() {
   const [list, setList] = useState();
   const [error, setError] = useState();
+
   useEffect(() => {
     if (
       localStorage.getItem("list") === undefined ||
@@ -21,8 +23,15 @@ function ProductList(props) {
     ) {
       getList();
     } else {
-      let stringList = JSON.parse(localStorage.getItem("list"));
-      setList(stringList);
+      if (isDataExpired()) {
+        localStorage.removeItem("list");
+        localStorage.removeItem("mobileDetails");
+        localStorage.removeItem("selectedPhones");
+        getList();
+      } else {
+        let stringList = JSON.parse(localStorage.getItem("list"));
+        setList(stringList);
+      }
     }
   }, []);
 
@@ -33,9 +42,12 @@ function ProductList(props) {
       setList(null);
     } else {
       setList(result);
+      let now = Date.now();
       localStorage.setItem("list", JSON.stringify(result));
+      localStorage.setItem("creationDate", JSON.stringify(now));
     }
   };
+
   const filterList = (e) => {
     let valueInput = e.target.value;
     if (valueInput.length > 0) {
