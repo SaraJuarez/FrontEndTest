@@ -1,10 +1,5 @@
 import { createContext } from "react";
 
-const ProductContext = createContext({
-  list: [],
-  mobileDetails: [],
-  selectedPhones: [],
-  creationDate: "",
-});
+const ProductContext = createContext();
 
 export default ProductContext;

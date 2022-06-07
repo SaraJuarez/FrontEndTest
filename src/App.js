@@ -3,23 +3,16 @@ import { Routes, Route } from "react-router-dom";
 
 import Nav from "./components/molecules/nav/Nav";
 import { StyledApp } from "./components/styles/app.styled";
-import ProductContext from "./context/ProductContext";
-import ProductDetail from "./pages/productDetail/ProductDetail";
+/* import ProductContext from "./context/ProductContext";
+ */ import ProductDetail from "./pages/productDetail/ProductDetail";
 import ProductList from "./pages/productList/ProductList";
-
+import ProductProvider from "./provider/ProductProvider";
 function App() {
   const [cartItems, setCartItems] = useState(0);
   const [detailId, setDetailId] = useState();
 
-  let productData = {
-    list: [],
-    mobileDetails: [],
-    selectedPhones: [],
-    creationDate: "",
-  };
-
   return (
-    <ProductContext.Provider value={productData}>
+    <ProductProvider>
       <StyledApp className="App">
         <Nav detailId={detailId} items={cartItems} />
         <Routes>
@@ -36,7 +29,7 @@ function App() {
           />
         </Routes>
       </StyledApp>
-    </ProductContext.Provider>
+    </ProductProvider>
   );
 }
 
