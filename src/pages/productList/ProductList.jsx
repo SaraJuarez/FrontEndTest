@@ -1,6 +1,6 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import ProductItem from "../../components/organisms/productItem/ProductItem";
 import {
@@ -11,6 +11,8 @@ import {
   StyledP,
 } from "../../components/styles/productList.styled";
 import ProductContext from "../../context/ProductContext";
+import { dispatchTypes } from "../../reducer/ProductReducer";
+import { getMobileList } from "../../utils/api/api";
 import { isDataExpired } from "../../utils/cache";
 
 function ProductList() {
@@ -18,20 +20,29 @@ function ProductList() {
   const [copyList, setCopyList] = useState();
   const [error, setError] = useState();
 
-  const listProvider = React.useContext(ProductContext);
-
+  const listProvider = useContext(ProductContext);
   useEffect(() => {
-    listProvider.getList();
+    getList();
   }, []);
 
-  useEffect(() => {
-    if (listProvider.list !== undefined) {
-      setList(listProvider.list);
-      setCopyList(listProvider.list);
-    } else if (listProvider.error !== undefined) {
-      setError(listProvider.error);
+  const getList = async () => {
+    let result = await getMobileList();
+    if (result.isAxiosError === true) {
+      listProvider.dispatch({
+        type: dispatchTypes.SET_ERROR,
+        payload: result.message,
+      });
+      setError(result.message);
+    } else {
+      let now = new moment();
+      listProvider.dispatch({
+        type: dispatchTypes.SET_CREATIONDATE,
+        payload: now,
+      });
+      listProvider.dispatch({ type: dispatchTypes.SET_LIST, payload: result });
+      setList(result);
     }
-  }, [listProvider.list, listProvider.error]);
+  };
 
   console.log("renderizando productlist");
   const filterList = (e) => {
@@ -45,6 +56,7 @@ function ProductList() {
       });
       setList(result);
     } else {
+      /* Aquí volvía a pedir la lista o la recogía de localStorage */
       setList(listProvider.list);
     }
   };

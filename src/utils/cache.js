@@ -21,12 +21,8 @@ export const isAlreadyInSelected = (id) => {
 
 export const informationAlreadyPresent = (id) => {
   let savedPhones = JSON.parse(localStorage.getItem("mobileDetails"));
-  if (savedPhones !== null) {
-    let mobileInfo = savedPhones.find((element) => element.id === id);
-    return mobileInfo;
-  } else {
-    return null;
-  }
+  let mobileInfo = savedPhones.find((element) => element.id === id);
+  return mobileInfo;
 };
 
 export const saveMobileDetails = (mobileDetail) => {

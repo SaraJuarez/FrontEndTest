@@ -8,6 +8,7 @@ export const initialState = {
   list: [],
   creationDate: null,
   error: null,
+  mobileDetails: [],
 };
 
 export const reducer = (state = initialState, action) => {

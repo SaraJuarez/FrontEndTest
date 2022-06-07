@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,7 @@ import {
   StyledLink,
   FakeButton,
 } from "../../components/styles/productDetail.styled";
+import ProductContext from "../../context/ProductContext";
 import { getMobileInfo, setMobileInfo } from "../../utils/api/api";
 import {
   isAlreadyInSelected,
@@ -37,7 +38,8 @@ function ProductDetail(props) {
     storage: "",
   });
 
-  let navigate = useNavigate();
+  const listProvider = useContext(ProductContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setDetailId(id);
@@ -45,9 +47,11 @@ function ProductDetail(props) {
       getMobileDetails();
     } else {
       let infoInCache = informationAlreadyPresent(id);
+      debugger;
       if (infoInCache === undefined) {
         getMobileDetails();
       } else {
+        /* si ya sabemos que tenemos la info, guardamos si ya está en carrito y recogemos la info */
         let isAlready = isAlreadyInSelected(id);
         setAlreadySelected(isAlready);
         setMobileDetails(infoInCache);
@@ -71,8 +75,8 @@ function ProductDetail(props) {
   };
 
   const getMobileDetails = async () => {
-    let isAlreadyInCart = isAlreadyInSelected(id);
-    setAlreadySelected(isAlreadyInCart);
+    /*     let isAlreadyInCart = isAlreadyInSelected(id);
+    setAlreadySelected(isAlreadyInCart); */
     let info = await getMobileInfo(id);
     saveMobileDetails(info);
     if (info.isAxiosError) {
