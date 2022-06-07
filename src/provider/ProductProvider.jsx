@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 import ProductContext from "../context/ProductContext";
 import { initialState, reducer } from "../reducer/ProductReducer";
@@ -28,7 +28,7 @@ const ProductProvider = ({ children, list, creationDate, error }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ ...providerValue, dispatch }}>
+    <ProductContext.Provider value={{ ...providerValue, dispatch, getList }}>
       {children}
     </ProductContext.Provider>
   );

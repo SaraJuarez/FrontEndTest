@@ -10,7 +10,7 @@ import {
   StyledH2,
   StyledP,
 } from "../../components/styles/productList.styled";
-import { getMobileList } from "../../utils/api/api";
+import ProductContext from "../../context/ProductContext";
 import { isDataExpired } from "../../utils/cache";
 
 function ProductList() {
@@ -18,42 +18,22 @@ function ProductList() {
   const [copyList, setCopyList] = useState();
   const [error, setError] = useState();
 
+  const listProvider = React.useContext(ProductContext);
+
   useEffect(() => {
-    if (
-      localStorage.getItem("list") === undefined ||
-      localStorage.getItem("list") === false ||
-      localStorage.getItem("list") === null
-    ) {
-      getList();
-    } else {
-      if (isDataExpired()) {
-        localStorage.removeItem("list");
-        localStorage.removeItem("mobileDetails");
-        localStorage.removeItem("selectedPhones");
-        localStorage.removeItem("creationDate");
-        getList();
-      } else {
-        let stringList = JSON.parse(localStorage.getItem("list"));
-        setCopyList(stringList);
-        setList(stringList);
-      }
-    }
+    listProvider.getList();
   }, []);
 
-  const getList = async () => {
-    let result = await getMobileList();
-    if (result.isAxiosError === true) {
-      setError(result.message);
-      setList(null);
-    } else {
-      setList(result);
-      setCopyList(result);
-      let now = new moment();
-      localStorage.setItem("list", JSON.stringify(result));
-      localStorage.setItem("creationDate", JSON.stringify(now));
+  useEffect(() => {
+    if (listProvider.list !== undefined) {
+      setList(listProvider.list);
+      setCopyList(listProvider.list);
+    } else if (listProvider.error !== undefined) {
+      setError(listProvider.error);
     }
-  };
+  }, [listProvider.list, listProvider.error]);
 
+  console.log("renderizando productlist");
   const filterList = (e) => {
     let valueInput = e.target.value;
     if (valueInput.length > 0) {
@@ -65,7 +45,7 @@ function ProductList() {
       });
       setList(result);
     } else {
-      getList();
+      setList(listProvider.list);
     }
   };
 
@@ -76,7 +56,7 @@ function ProductList() {
         <input onChange={filterList} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>
-        {list !== undefined && list !== null ? (
+        {list !== [] && list !== undefined ? (
           list.map((element) => {
             return <ProductItem key={element.id} productInfo={element} />;
           })
