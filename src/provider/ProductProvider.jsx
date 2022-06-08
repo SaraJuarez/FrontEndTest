@@ -24,6 +24,7 @@ const ProductProvider = ({ children, list, creationDate, error }) => {
       let now = new moment();
       dispatch({ type: dispatchTypes.SET_CREATIONDATE, payload: now });
       dispatch({ type: dispatchTypes.SET_LIST, payload: result });
+      return "sucess";
     }
   };
 

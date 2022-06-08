@@ -11,6 +11,7 @@ import {
   StyledP,
 } from "../../components/styles/productList.styled";
 import ProductContext from "../../context/ProductContext";
+import { getMobileList } from "../../utils/api/api";
 import { isDataExpired } from "../../utils/cache";
 
 function ProductList() {
@@ -21,7 +22,15 @@ function ProductList() {
   const listProvider = React.useContext(ProductContext);
 
   useEffect(() => {
-    listProvider.getList();
+    const getDatos = () => {
+      return new Promise((resolve, reject) => {
+        let datos = listProvider.getList();
+        debugger;
+        resolve(datos);
+        reject("maaal");
+      });
+    };
+    getDatos().then((datos) => console.log(datos));
   }, []);
 
   useEffect(() => {
