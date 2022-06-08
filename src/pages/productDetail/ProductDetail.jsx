@@ -19,6 +19,7 @@ import {
   FakeButton,
 } from "../../components/styles/productDetail.styled";
 import ProductContext from "../../context/ProductContext";
+import { dispatchTypes } from "../../reducer/ProductReducer";
 import { getMobileInfo, setMobileInfo } from "../../utils/api/api";
 import {
   isAlreadyInSelected,
@@ -43,16 +44,15 @@ function ProductDetail(props) {
 
   useEffect(() => {
     setDetailId(id);
-    if (localStorage.getItem("mobileDetails") === null) {
+    if (listProvider.mobileDetails === undefined) {
       getMobileDetails();
     } else {
-      let infoInCache = informationAlreadyPresent(id);
-      debugger;
+      let infoInCache = informationAlreadyPresent(id, listProvider);
       if (infoInCache === undefined) {
         getMobileDetails();
       } else {
         /* si ya sabemos que tenemos la info, guardamos si ya está en carrito y recogemos la info */
-        let isAlready = isAlreadyInSelected(id);
+        let isAlready = isAlreadyInSelected(id, listProvider);
         setAlreadySelected(isAlready);
         setMobileDetails(infoInCache);
         let newObjectDefault = {
@@ -75,14 +75,12 @@ function ProductDetail(props) {
   };
 
   const getMobileDetails = async () => {
-    /*     let isAlreadyInCart = isAlreadyInSelected(id);
-    setAlreadySelected(isAlreadyInCart); */
     let info = await getMobileInfo(id);
-    saveMobileDetails(info);
     if (info.isAxiosError) {
       window.alert(info.message);
       navigate("/");
     } else {
+      saveMobileDetails(info, listProvider);
       let colorDefault = info.options.colors[0].code;
       let storageDefault = info.options.storages[0].code;
       let newObjectDefault = {
@@ -96,12 +94,11 @@ function ProductDetail(props) {
   };
 
   const getCartInfo = async () => {
-    setSelectedPhones(selectedOption);
+    setSelectedPhones(selectedOption, listProvider);
     let newObject = selectedOption;
     setSelectedOption(newObject);
     /* The POST method only returns 1, so I prefer to make the sum here */
     let itemsInTheCart = await setMobileInfo(selectedOption);
-    debugger;
     if (itemsInTheCart === 1) {
       setCartItems(cartItems + 1);
       navigate("/");

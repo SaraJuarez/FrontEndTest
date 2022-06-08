@@ -1,43 +1,57 @@
 import moment from "moment";
-export const setSelectedPhones = (selectedOption) => {
-  let savedPhones = localStorage.getItem("selectedPhones");
-  if (savedPhones === null) {
-    localStorage.setItem("selectedPhones", JSON.stringify([selectedOption.id]));
+
+import { dispatchTypes } from "../reducer/ProductReducer";
+
+export const setSelectedPhones = (selectedOption, listProvider) => {
+  let savedPhones = listProvider.selectedPhones;
+  if (savedPhones === undefined) {
+    listProvider.dispatch({
+      type: dispatchTypes.SET_SELECTEDPHONES,
+      payload: [selectedOption.id],
+    });
   } else {
-    let savedArray = JSON.parse(savedPhones);
+    let savedArray = savedPhones;
     savedArray.push(selectedOption.id);
-    localStorage.setItem("selectedPhones", JSON.stringify(savedArray));
+    listProvider.dispatch({
+      type: dispatchTypes.SET_SELECTEDPHONES,
+      payload: savedArray,
+    });
   }
 };
 
-export const isAlreadyInSelected = (id) => {
-  let savedPhones = JSON.parse(localStorage.getItem("selectedPhones"));
-  if (savedPhones !== null) {
+export const isAlreadyInSelected = (id, listProvider) => {
+  let savedPhones = listProvider.selectedPhones;
+  if (savedPhones !== undefined) {
     return savedPhones.some((option) => option === id);
   } else {
     return false;
   }
 };
 
-export const informationAlreadyPresent = (id) => {
-  let savedPhones = JSON.parse(localStorage.getItem("mobileDetails"));
+export const informationAlreadyPresent = (id, listProvider) => {
+  let savedPhones = listProvider.mobileDetails;
   let mobileInfo = savedPhones.find((element) => element.id === id);
   return mobileInfo;
 };
 
-export const saveMobileDetails = (mobileDetail) => {
-  let mobileDetailsArray = localStorage.getItem("mobileDetails");
-  if (mobileDetailsArray === null) {
-    localStorage.setItem("mobileDetails", JSON.stringify([mobileDetail]));
+export const saveMobileDetails = (mobileDetail, listProvider) => {
+  if (listProvider.mobileDetails === undefined) {
+    listProvider.dispatch({
+      type: dispatchTypes.SET_MOBILEDETAILS,
+      payload: [mobileDetail],
+    });
   } else {
-    let savedArray = JSON.parse(mobileDetailsArray);
-    savedArray.push(mobileDetail);
-    localStorage.setItem("mobileDetails", JSON.stringify(savedArray));
+    let list = listProvider.mobileDetails;
+    list.push(mobileDetail);
+    listProvider.dispatch({
+      type: dispatchTypes.SET_MOBILEDETAILS,
+      payload: list,
+    });
   }
 };
 
-export const isDataExpired = () => {
-  let savedTime = JSON.parse(localStorage.getItem("creationDate"));
+export const isDataExpired = (listProvider) => {
+  let savedTime = listProvider.creationDate;
   let expiringTime = moment(savedTime).add(1, "h");
   return expiringTime < new moment();
 };

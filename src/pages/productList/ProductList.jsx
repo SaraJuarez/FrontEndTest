@@ -22,7 +22,12 @@ function ProductList() {
 
   const listProvider = useContext(ProductContext);
   useEffect(() => {
-    getList();
+    if (listProvider.list === undefined) {
+      getList();
+    } else {
+      setList(listProvider.list);
+      setCopyList(listProvider.list);
+    }
   }, []);
 
   const getList = async () => {
@@ -41,10 +46,10 @@ function ProductList() {
       });
       listProvider.dispatch({ type: dispatchTypes.SET_LIST, payload: result });
       setList(result);
+      setCopyList(result);
     }
   };
 
-  console.log("renderizando productlist");
   const filterList = (e) => {
     let valueInput = e.target.value;
     if (valueInput.length > 0) {
@@ -56,7 +61,6 @@ function ProductList() {
       });
       setList(result);
     } else {
-      /* Aquí volvía a pedir la lista o la recogía de localStorage */
       setList(listProvider.list);
     }
   };

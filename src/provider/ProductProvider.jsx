@@ -1,10 +1,7 @@
-import moment from "moment";
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
 import ProductContext from "../context/ProductContext";
 import { initialState, reducer } from "../reducer/ProductReducer";
-import { dispatchTypes } from "../reducer/ProductReducer";
-import { getMobileList } from "../utils/api/api";
 
 const ProductProvider = ({
   children,
@@ -12,6 +9,7 @@ const ProductProvider = ({
   creationDate,
   error,
   mobileDetails,
+  selectedPhones,
 }) => {
   const init = {
     ...initialState,
@@ -19,6 +17,7 @@ const ProductProvider = ({
     creationDate,
     error,
     mobileDetails,
+    selectedPhones,
   };
 
   const [providerValue, dispatch] = useReducer(reducer, init);
