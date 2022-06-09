@@ -34,6 +34,7 @@ function ProductList() {
       setList(listProvider.list);
       setCopyList(listProvider.list);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getList = async () => {

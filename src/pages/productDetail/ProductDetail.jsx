@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/atoms/button/Button";
 import ImageDetail from "../../components/atoms/imageDetail/ImageDetail";
-import ImageProduct from "../../components/atoms/imageProduct/ImageProduct";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import Select from "../../components/atoms/select/Select";
 import {
