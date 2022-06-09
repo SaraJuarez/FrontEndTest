@@ -6,7 +6,10 @@ export const ImageContainer = styled.img`
   @media screen and (max-width: 64.0625em) {
     height: 180px;
   }
-  @media screen and (max-width: 48.0625em) {
-    height: 140px;
+  @media screen and (max-width: 54.089em) {
+    height: 156px;
+  }
+  @media screen and (max-width: 20.0625em) {
+    height: 100px;
   }
 `;

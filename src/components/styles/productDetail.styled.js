@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const ProductDetailContainer = styled.div`
   display: flex;
@@ -8,11 +8,18 @@ export const ProductDetailContainer = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colors?.lightBlue};
 `;
-
 export const StyledProductDetailText = styled.div`
   margin-left: 10%;
+  height: 400px;
+  overflow-y: scroll;
   color: ${(props) => props.theme.colors?.darkBlue};
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1050px) {
+    height: 300px;
+  }
+  @media screen and (max-width: 900px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 850px) {
     font-size: 12px;
   }
   @media screen and (max-width: 600px) {
@@ -55,6 +62,9 @@ export const ProductDetailAll = styled.div`
   background-color: white;
   padding: 15px;
   border-radius: 15px;
+  @media screen and (max-width: 750px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProductDetailInfoActions = styled.div`
@@ -67,6 +77,7 @@ export const SelectsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-top: 20px;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     align-items: flex-start;

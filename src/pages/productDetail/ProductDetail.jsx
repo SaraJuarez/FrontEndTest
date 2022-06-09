@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/atoms/button/Button";
+import ImageDetail from "../../components/atoms/imageDetail/ImageDetail";
 import ImageProduct from "../../components/atoms/imageProduct/ImageProduct";
 import ProductDetailText from "../../components/atoms/productDetailText/ProductDetailText";
 import Select from "../../components/atoms/select/Select";
@@ -118,7 +119,7 @@ function ProductDetail() {
         <LinkContainer>Go back</LinkContainer>
       </StyledLink>
       <ProductDetailAll>
-        <ImageProduct image={mobileDetails?.imgUrl} />
+        <ImageDetail image={mobileDetails?.imgUrl} />
         <ProductDetailInfoActions>
           <StyledProductDetailText>
             {mobileDetails !== undefined ? (
