@@ -21,8 +21,13 @@ function ProductList() {
   const [error, setError] = useState();
 
   const listProvider = useContext(ProductContext);
+
   useEffect(() => {
     if (listProvider.list === undefined) {
+      getList();
+    } else if (isDataExpired()) {
+      listProvider.dispatch({ type: dispatchTypes.RESET_INITIALSTATE });
+      setList(undefined);
       getList();
     } else {
       setList(listProvider.list);

@@ -5,6 +5,7 @@ export const dispatchTypes = {
   SET_MOBILEDETAILS: "SET_MOBILEDETAILS",
   SET_SELECTEDPHONES: "SET_SELECTEDPHONES",
   SET_CARTITEMS: "SET_CARTITEMS",
+  RESET_INITIALSTATE: "RESET_INITIALSTATE",
 };
 
 export const initialState = {
@@ -32,6 +33,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, selectedPhones: payload };
     case dispatchTypes.SET_CARTITEMS:
       return { ...state, cart: payload };
+    case dispatchTypes.RESET_INITIALSTATE:
+      return { ...initialState };
     default:
       return { ...state };
   }
