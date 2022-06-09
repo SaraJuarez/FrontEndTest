@@ -10,6 +10,7 @@ const ProductProvider = ({
   error,
   mobileDetails,
   selectedPhones,
+  cart,
 }) => {
   const init = {
     ...initialState,
@@ -18,6 +19,7 @@ const ProductProvider = ({
     error,
     mobileDetails,
     selectedPhones,
+    cart,
   };
 
   const [providerValue, dispatch] = useReducer(reducer, init);

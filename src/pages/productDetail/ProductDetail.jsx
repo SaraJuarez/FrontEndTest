@@ -28,8 +28,7 @@ import {
 } from "../../utils/cache";
 import { setSelectedPhones } from "../../utils/cache";
 
-function ProductDetail(props) {
-  const { setCartItems, cartItems, setDetailId } = props;
+function ProductDetail() {
   const { id } = useParams();
   const [mobileDetails, setMobileDetails] = useState();
   const [isAlreadySelected, setAlreadySelected] = useState(false);
@@ -43,7 +42,6 @@ function ProductDetail(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setDetailId(id);
     if (listProvider.mobileDetails === undefined) {
       getMobileDetails();
     } else {
@@ -100,7 +98,14 @@ function ProductDetail(props) {
     /* The POST method only returns 1, so I prefer to make the sum here */
     let itemsInTheCart = await setMobileInfo(selectedOption);
     if (itemsInTheCart === 1) {
-      setCartItems(cartItems + 1);
+      let newNumber =
+        listProvider.cart !== null && listProvider.cart !== undefined
+          ? listProvider.cart + 1
+          : 1;
+      listProvider.dispatch({
+        type: dispatchTypes.SET_CARTITEMS,
+        payload: newNumber,
+      });
       navigate("/");
     } else if (itemsInTheCart.isAxiosError) {
       window.alert(itemsInTheCart.message);

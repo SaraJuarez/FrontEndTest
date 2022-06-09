@@ -7,8 +7,7 @@ import {
   ReversedLinkStyled,
 } from "../../styles/breadcrumb.styled";
 
-function BreadCrumb(props) {
-  const { detailId } = props;
+function BreadCrumb() {
   const location = useLocation();
   return (
     <div role="presentation">
@@ -20,11 +19,7 @@ function BreadCrumb(props) {
         </NavUnlisted>
         {location.pathname !== "/" && (
           <NavUnlisted>
-            <ReversedLinkStyled
-              data-testid="detail"
-              id="detail"
-              to={`/${detailId}`}
-            >
+            <ReversedLinkStyled data-testid="detail" id="detail">
               Mobile Detail
             </ReversedLinkStyled>
           </NavUnlisted>
