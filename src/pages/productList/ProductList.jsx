@@ -9,6 +9,7 @@ import {
   ProductListTitle,
   StyledH2,
   StyledP,
+  StyledInput,
 } from "../../components/styles/productList.styled";
 import ProductContext from "../../context/ProductContext";
 import { dispatchTypes } from "../../reducer/ProductReducer";
@@ -74,7 +75,7 @@ function ProductList() {
     <ProductListContainer>
       <ProductListTitle>
         <StyledH2>Mobile List</StyledH2>
-        <input onChange={filterList} placeholder="search" />
+        <StyledInput onChange={filterList} placeholder="search" />
       </ProductListTitle>
       <ProductListGrid>
         {list !== [] && list !== undefined ? (

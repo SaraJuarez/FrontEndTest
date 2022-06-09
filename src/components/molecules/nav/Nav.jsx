@@ -9,6 +9,7 @@ import {
   StyledP,
   StyledCart,
   StyledLink,
+  StyledDiv,
 } from "../../styles/nav.styled";
 
 function Nav() {
@@ -16,16 +17,16 @@ function Nav() {
 
   return (
     <NavContainer>
-      <div>
+      <StyledDiv>
         <StyledLink to="/">
           <StyledH1>Mobile Catalog</StyledH1>
         </StyledLink>
-        <BreadCrumb />
-      </div>
-      <StyledCart>
-        <StyledP>Items in the cart: {listProvider.cart}</StyledP>
-        <ShoppingCartIcon />
-      </StyledCart>
+        <StyledCart>
+          <StyledP>Items in the cart: {listProvider.cart}</StyledP>
+          <ShoppingCartIcon />
+        </StyledCart>
+      </StyledDiv>
+      <BreadCrumb />
     </NavContainer>
   );
 }

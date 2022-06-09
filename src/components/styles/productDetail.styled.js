@@ -16,17 +16,17 @@ export const StyledProductDetailText = styled.div`
   @media screen and (max-width: 1050px) {
     height: 300px;
   }
-  @media screen and (max-width: 900px) {
-    height: 200px;
+  @media screen and (max-width: 950px) {
+    height: 250px;
   }
   @media screen and (max-width: 850px) {
-    font-size: 12px;
+    font-size: 14px;
   }
   @media screen and (max-width: 600px) {
-    font-size: 10px;
+    font-size: 12px;
   }
   @media screen and (max-width: 450px) {
-    font-size: 8px;
+    font-size: 10px;
   }
 `;
 
@@ -47,6 +47,7 @@ export const LinkContainer = styled.div`
   @media screen and (max-width: 450px) {
     padding: 14px 2px;
     top: 35%;
+    font-size: 12px;
   }
 `;
 
@@ -79,8 +80,8 @@ export const SelectsContainer = styled.div`
   align-items: center;
   padding-top: 20px;
   @media screen and (max-width: 600px) {
-    flex-direction: column;
-    align-items: flex-start;
+    /*     flex-direction: column;
+    align-items: flex-start; */
   }
 `;
 

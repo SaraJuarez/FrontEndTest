@@ -1,3 +1,4 @@
+import { padding } from "@mui/system";
 import styled from "styled-components";
 
 export const ProductListContainer = styled.div`
@@ -6,6 +7,10 @@ export const ProductListContainer = styled.div`
   background-color: ${(props) => props.theme.colors?.lightBlue};
   padding-right: 4em;
   padding-left: 4em;
+  @media screen and (max-width: 400px) {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
 `;
 
 export const ProductListGrid = styled.div`
@@ -47,4 +52,10 @@ export const StyledH2 = styled.h2`
 
 export const StyledP = styled.p`
   font-weight: bold;
+`;
+
+export const StyledInput = styled.input`
+  @media screen and (max-width: 600px) {
+    width: 50%;
+  }
 `;

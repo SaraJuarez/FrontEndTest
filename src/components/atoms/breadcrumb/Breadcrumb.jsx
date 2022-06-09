@@ -5,12 +5,13 @@ import {
   CustomizedBreadCrumbs,
   LinkStyled,
   ReversedLinkStyled,
+  StyledDiv,
 } from "../../styles/breadcrumb.styled";
 
 function BreadCrumb() {
   const location = useLocation();
   return (
-    <div role="presentation">
+    <StyledDiv>
       <CustomizedBreadCrumbs separator="›" aria-label="breadcrumb">
         <NavUnlisted>
           <LinkStyled data-testid="home" id="home" to="/">
@@ -25,7 +26,7 @@ function BreadCrumb() {
           </NavUnlisted>
         )}
       </CustomizedBreadCrumbs>
-    </div>
+    </StyledDiv>
   );
 }
 

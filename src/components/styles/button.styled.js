@@ -8,9 +8,12 @@ export const ButtonContainer = styled.div`
   padding: 10px 5px;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 30%;
+  width: 20%;
   box-shadow: 5px 0px 15px 0px #000000;
   cursor: pointer;
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 export const ButtonText = styled.p`

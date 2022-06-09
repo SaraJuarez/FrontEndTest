@@ -8,4 +8,7 @@ export const ImageDetailStyled = styled.img`
   @media screen and (max-width: 950px) {
     height: 250px;
   }
+  @media screen and (max-width: 600px) {
+    height: 150px;
+  }
 `;

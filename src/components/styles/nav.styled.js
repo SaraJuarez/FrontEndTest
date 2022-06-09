@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const NavContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(
@@ -14,6 +15,9 @@ export const NavContainer = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors?.darkBlue};
   padding-right: 4em;
   padding-left: 4em;
+  @media screen and (max-width: 400) {
+    flex-direction: column;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -51,4 +55,10 @@ export const StyledP = styled.p`
 export const StyledCart = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const StyledDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
