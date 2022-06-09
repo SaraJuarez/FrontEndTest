@@ -1,11 +1,12 @@
 import React from "react";
 import "./index.css";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
 import Theme from "./Theme";
-import { createRoot } from "react-dom/client";
-import { createGlobalStyle } from "styled-components";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
