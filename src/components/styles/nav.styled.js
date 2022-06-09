@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 export const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,8 @@ export const NavContainer = styled.div`
   );
   color: ${(props) => props.theme.colors?.violet};
   border-bottom: 1px solid ${(props) => props.theme.colors?.darkBlue};
-  padding: 0px 15px;
+  padding-right: 4em;
+  padding-left: 4em;
 `;
 
 export const StyledLink = styled(Link)`

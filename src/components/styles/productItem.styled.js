@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ProductItemContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: white;
-  border-radius: 15px;
+  background-color: #fff;
+  border-radius: 6px;
   padding: 15px;
   color: ${(props) => props.theme.colors?.darkBlue};
   cursor: pointer;

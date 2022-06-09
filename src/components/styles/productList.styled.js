@@ -4,6 +4,8 @@ export const ProductListContainer = styled.div`
   padding: 20px;
   color: ${(props) => props.theme.colors?.darkBlue};
   background-color: ${(props) => props.theme.colors?.lightBlue};
+  padding-right: 4em;
+  padding-left: 4em;
 `;
 
 export const ProductListGrid = styled.div`
@@ -12,13 +14,14 @@ export const ProductListGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 1400px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1100px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 700px) {
     grid-template-columns: 1fr;
   }
 `;

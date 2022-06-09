@@ -25,7 +25,7 @@ function ProductList() {
   useEffect(() => {
     if (listProvider.list === undefined) {
       getList();
-    } else if (isDataExpired()) {
+    } else if (isDataExpired(listProvider)) {
       listProvider.dispatch({ type: dispatchTypes.RESET_INITIALSTATE });
       setList(undefined);
       getList();
